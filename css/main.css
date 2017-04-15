@@ -52,6 +52,7 @@
 
 body {
     font-family: "Helvetica, Arial";
+    text-align: center;
 }
 
 a.titlelink:link, a.titlelink:visited {
@@ -71,6 +72,7 @@ a.titlelink:hover, a.titlelink:active {
     padding: 30px;
     font-family: "Roboto";
     font-size: 90%;
+    text-align: left;
 }
 
 a:link, a:visited {
