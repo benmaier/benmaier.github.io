@@ -7,6 +7,6 @@ publish: website
 	git commit -m "publish"
 	git push
 
-test:
+test: website
 	python -m SimpleHTTPServer 9090 &
 	open http://127.0.0.1:9090
