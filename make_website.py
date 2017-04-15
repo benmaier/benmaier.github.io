@@ -7,7 +7,9 @@ directories = [
         './about/',
         './science/',
         './freelancing/',
-        './feuilleton',
+        './feuilleton/',
+        './contact/',
+        './impressum/',
         ]
 
 content_files = []
