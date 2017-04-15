@@ -9,13 +9,13 @@
 }
 
 .titlewrapper {
-    width: 600px;
+    max-width: 700px;
     overflow: hidden; /* add this to contain floated children */
     border-bottom: 1px solid black;
 }
 
 .footer {
-    width: 600px;
+    max-width: 700px;
     overflow: hidden; /* add this to contain floated children */
     border-top: 1px solid grey;
     /* position: absolute;
@@ -67,7 +67,7 @@ a.titlelink:hover, a.titlelink:active {
 }
 
 .bodymain {
-    max-width: 700px;
+    max-width: 630px;
     padding: 30px;
     font-family: "Roboto";
     font-size: 90%;
