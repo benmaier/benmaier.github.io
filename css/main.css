@@ -94,6 +94,11 @@ h2 {
     color: #999;
 }
 
+h3 {
+    font-family: Garamond, "Cormorant Garamond";
+    color: #999;
+}
+
 .left{
     text-align:left;
     float:left;
