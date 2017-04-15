@@ -13,19 +13,30 @@
     overflow: hidden; /* add this to contain floated children */
     border-bottom: 1px solid black;
 }
+
+.footer {
+    width: 600px;
+    overflow: hidden; /* add this to contain floated children */
+    border-top: 1px solid grey;
+    /* position: absolute;
+    bottom: 0; */
+    font-size: 70%;
+    font-family: "Garamond";
+}
+
 .titleleft {
     float:left; /* add this */
     padding-right: 20px;
 }
+
 .titleright {
     float: left; /* add this */
 }
 
 .subtitlewrapper {
+    margin-top: -5px;
     overflow: hidden; /* add this to contain floated children */
 }
-
-
 
 .titlename {
     font-size: 300%;
@@ -34,15 +45,16 @@
     color: #999;
 }
 
-body {
+.subtitle {
     font-family: "Garamond";
+    font-size: 100%;
 }
 
-a.titlelink {
-    
+body {
+    font-family: "Helvetica, Arial";
 }
 
-a:link, a:visited {
+a.titlelink:link, a.titlelink:visited {
     font-family: "Garamond";
     color: #999;
     text-decoration: none;
@@ -50,8 +62,40 @@ a:link, a:visited {
 }
 
 
+a.titlelink:hover, a.titlelink:active {
+    color: #f99;
+}
+
+.bodymain {
+    max-width: 700px;
+    padding: 30px;
+    font-family: "Roboto";
+    font-size: 90%;
+}
+
+a:link, a:visited {
+    color: #999;
+    text-decoration: none;
+}
+
+
 a:hover, a:active {
     color: #f99;
 }
 
+h1 {
+    font-family: "Garamond";
+    color: #999;
+}
 
+.left{
+    text-align:left;
+    float:left;
+}
+.right{
+    float:right;
+    text-align:right;
+}
+.centered{
+    text-align:center;
+}
