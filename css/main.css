@@ -1,0 +1,57 @@
+.titlepic {
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    filter: FlipH;
+    -ms-filter: "FlipH";
+    vertical-align: text-top;
+}
+
+.titlewrapper {
+    width: 600px;
+    overflow: hidden; /* add this to contain floated children */
+    border-bottom: 1px solid black;
+}
+.titleleft {
+    float:left; /* add this */
+    padding-right: 20px;
+}
+.titleright {
+    float: left; /* add this */
+}
+
+.subtitlewrapper {
+    overflow: hidden; /* add this to contain floated children */
+}
+
+
+
+.titlename {
+    font-size: 300%;
+    /*font-family: "Gentium Basic"; */
+    font-family: "Garamond"; 
+    color: #999;
+}
+
+body {
+    font-family: "Garamond";
+}
+
+a.titlelink {
+    
+}
+
+a:link, a:visited {
+    font-family: "Garamond";
+    color: #999;
+    text-decoration: none;
+    font-size: 150%;
+}
+
+
+a:hover, a:active {
+    color: #f99;
+}
+
+
