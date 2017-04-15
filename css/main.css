@@ -21,7 +21,7 @@
     /* position: absolute;
     bottom: 0; */
     font-size: 70%;
-    font-family: "Garamond";
+    font-family: "Garamond,Cormorant Garamond";
 }
 
 .titleleft {
@@ -41,12 +41,12 @@
 .titlename {
     font-size: 300%;
     /*font-family: "Gentium Basic"; */
-    font-family: "Garamond"; 
+    font-family: "Garamond,Cormorant Garamond"; 
     color: #999;
 }
 
 .subtitle {
-    font-family: "Garamond";
+    font-family: "Garamond,Cormorant Garamond";
     font-size: 100%;
 }
 
@@ -55,7 +55,7 @@ body {
 }
 
 a.titlelink:link, a.titlelink:visited {
-    font-family: "Garamond";
+    font-family: "Garamond,Cormorant Garamond";
     color: #999;
     text-decoration: none;
     font-size: 150%;
@@ -84,7 +84,7 @@ a:hover, a:active {
 }
 
 h1 {
-    font-family: "Garamond";
+    font-family: "Garamond,Cormorant Garamond";
     color: #999;
 }
 
