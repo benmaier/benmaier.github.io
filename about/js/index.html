@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+.node {
+  /*stroke: #fff;
+  stroke-width: 1px;*/
+  stroke-width: .5px;
+  stroke: #000;
+}
+
+.link {
+  stroke: #999;
+  stroke-opacity: 0.99;
+}
+
+.amus path,
+.amus line {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+}
+
+.cum_data_point circle{
+    r: 3;
+    fill: #ddd;
+    fill-opacity:0.1;
+}
+.amus text {
+    font-family: sans-serif;
+    font-size: 8pt;
+}
+
+.legend_entry {
+    font-family: sans-serif;
+    font-size: 10pt;
+}
+
+.inputlabel {
+    font-family: sans-serif;
+    font-size: 14pt;
+    background-color: MistyRose;
+    padding: 10px;
+    margin: 10px;
+}
+.mean_line {
+    stroke: #999;
+    stroke-opacity: .8;
+    stroke-width: 1;
+}
+.inputwidth {
+    width: 400px;
+}
+
+body {
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+}
+
+</style>
+<body>
+    <h2>Hierarchical Random Networks</h2>
+    <h3>Number of nodes <i>N</i> = 216</h3>
+    <input id="L" type="range" min="2" max="4" step="1" value="3" class="inputwidth"/>
+    <span class="inputlabel"><i>L</i> = <label id="showL"></label></span><br/><br/>
+    <input id="B" type="range" min="2" max="7" step="1" value="4" class="inputwidth"/>
+    <span class="inputlabel"><i>B</i> = <label id="showB"></label></span><br/><br/>
+    <input id="mu" type="range" min="-3" max="1" step="0.01" value="0" class="inputwidth"/>
+    <span class="inputlabel">log(<i>&#958;</i>)/log(<i>B</i>)= <label id="showmu"></label></span><br/><br/>
+    <input id="k" type="range" min="0" max="1" step="0.1" value="1" class="inputwidth"/>
+    <span class="inputlabel">&#x3008;<i>k</i>&#x3009; = <label id="showk_multiplier"></label> x (B-1)</span> = <label id="showk"></label></span><br/><br/>
+    <input id="show_redistribution" type="checkbox" value="show_redistribution" checked="true"/>
+    <label for="show_redistribution">Show Redistribution of Links</label><br/>
+    <input id="redist_exc_prob" type="checkbox" value="redist_exc_prob" checked="true"/>
+    <label for="redist_exc_prob">Redistribute excess probability</label><br/>
+    <input id="use_hier" type="checkbox" value="use_hier" checked="true"/>
+    <label for="use_hier">Use hierarchical instead of conventional small-world</label><br/>
+    <!--<svg id ="dist"></svg>-->
+    <svg id ="network"></svg>
+    <svg id ="clust"></svg><br/>
+<script src="./d3/d3.v3.js"></script>
+<script type="text/javascript" src="./jLouvain.js"></script>
+<script src="./mhrn.js"></script> <!-- it's crucial that this custom script is loaded first due to global variables -->
+<script src="./network.js"></script> <!-- it's crucial that this custom script is loaded first due to global variables -->
+<script>
+    document.getElementById('L').value = L;
+    document.getElementById('B').value = B;
+    document.getElementById('mu').value = mu;
+    document.getElementById('k').value = k / (B-1);
+    document.getElementById('showmu').innerHTML = mu;
+    document.getElementById('showB').innerHTML = B;
+    document.getElementById('showL').innerHTML = L;
+    document.getElementById('showk').innerHTML = k;
+    document.getElementById('showk_multiplier').innerHTML = k / (B-1);
+
+    document.getElementById('mu').addEventListener('change', function() {
+        mu = this.valueAsNumber;
+        updateNetwork();
+    });
+    document.getElementById('mu').addEventListener('input', function() {
+        document.getElementById('showmu').innerHTML = this.valueAsNumber;
+    });
+
+    document.getElementById('L').addEventListener('change', function() {
+        L = this.valueAsNumber;
+        updateNetwork();
+    });
+    document.getElementById('L').addEventListener('input', function() {
+        document.getElementById('showL').innerHTML = this.valueAsNumber;
+    });
+    document.getElementById('B').addEventListener('change', function() {
+        B = this.valueAsNumber;
+        k = document.getElementById('k').value * (this.valueAsNumber-1)
+        updateNetwork();
+    });
+    document.getElementById('B').addEventListener('input', function() {
+        document.getElementById('showB').innerHTML = this.valueAsNumber;
+        document.getElementById('showk').innerHTML = document.getElementById('k').value * (this.value-1);
+    });
+    document.getElementById('k').addEventListener('change', function() {
+        k = this.valueAsNumber * (B-1);
+        updateNetwork();
+    });
+    document.getElementById('k').addEventListener('input', function() {
+        //mu = this.value;
+        document.getElementById('showk_multiplier').innerHTML = this.valueAsNumber;
+        document.getElementById('showk').innerHTML = this.valueAsNumber*(B-1);
+        //updateDist(this.value);
+    });
+
+    document.getElementById('use_hier').addEventListener('click', function() {
+        updateNetwork();
+    });
+
+    document.getElementById('redist_exc_prob').addEventListener('click', function() {
+        updateNetwork();
+    });
+</script>
+

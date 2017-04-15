@@ -16,7 +16,7 @@
   <body>
     <div class="titlewrapper">
         <div class="titleleft">
-            <img src="/img/titlepic.png" class="titlepic"/>
+            <img src="/img/titlepic2.png" class="titlepic"/>
         </div>
 
         <div class="titleright">
@@ -40,7 +40,7 @@
 <p>
     Hi! My name is Ben and I'm currently doing a PhD in physics at 
     <a href="http://rocs.hu-berlin.de/" target="_blank">Dirk Brockmann's lab</a> in Berlin.
-    I'm located at the <a href="https://www.rki.de" target="_blank">Robert-Koch Institut</a> 
+    I'm located at the <a href="https://www.rki.de" target="_blank">Robert Koch-Institut</a> 
     but am also affiliated with HU Berlin's 
     <a href="https://www.physik.hu-berlin.de" target="_blank">physics department</a> and 
     <a href="https://www.iri-ls.hu-berlin.de/en" target="_blank">IRI Life Sciences</a>.
@@ -51,6 +51,91 @@
     properties of human
     contact networks or human transport networks, both of static and dynamic nature.
 </p>
+
+<p>
+    One of the structures of interest is shown below, a <i>Modular Hierarchical Random Network</i>. I'm curious to find out how certain processes change when the »amount« of hierarchical clustering is varied. 
+    Hm, maybe it's not clear what I mean with varying the »amount« ...
+    Try it out yourself! Slide to the left to increase hierarchical clustering, 
+    slide to the right and the network structure becomes more random.
+</p>
+
+<style>
+
+.node {
+  /*stroke: #fff;
+  stroke-width: 1px;*/
+  stroke-width: .5px;
+  stroke: #000;
+}
+
+.link {
+  stroke: #999;
+  stroke-opacity: 0.99;
+}
+
+.amus path,
+.amus line {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+}
+
+.cum_data_point circle{
+    r: 3;
+    fill: #ddd;
+    fill-opacity:0.1;
+}
+.amus text {
+    font-family: Roboto;
+    font-size: 8pt;
+}
+
+.legend_entry {
+    font-family: Roboto;
+    font-size: 10pt;
+}
+
+.inputlabel {
+    font-family: Roboto;
+    font-size: 120%;
+    padding: 10px;
+    margin: 10px;
+}
+.mean_line {
+    stroke: #999;
+    stroke-opacity: .8;
+    stroke-width: 1;
+}
+.inputwidth {
+    width: 200px;
+}
+
+</style>
+    <br/>
+    <center>
+        <div style="width:400px;">
+            <input id="mu" type="range" min="-1.2" max="1" step="0.01" value="0" class="inputwidth"/>
+            <span class="inputlabel"><i>&#956;</i>&nbsp;= <label id="showmu"></label></span><br/><br/>
+        </div>
+        <svg id ="network"></svg>
+</center>
+<script src="/d3/d3.v3.js"></script>
+<script type="text/javascript" src="/about/js/jLouvain.js"></script>
+<script src="/about/js/mhrn.js"></script> <!-- it's crucial that this custom script is loaded first due to global variables -->
+<script src="/about/js/network.js"></script> <!-- it's crucial that this custom script is loaded first due to global variables -->
+<script>
+    document.getElementById('mu').value = mu;
+    document.getElementById('showmu').innerHTML = mu;
+
+    document.getElementById('mu').addEventListener('change', function() {
+        mu = this.valueAsNumber;
+        updateNetwork();
+    });
+    document.getElementById('mu').addEventListener('input', function() {
+        document.getElementById('showmu').innerHTML = this.valueAsNumber;
+    });
+</script>
+
 
     </div>
     <div class="footer">
