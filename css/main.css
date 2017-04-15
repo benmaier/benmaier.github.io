@@ -20,8 +20,8 @@
     border-top: 1px solid grey;
     /* position: absolute;
     bottom: 0; */
-    font-size: 70%;
-    font-family: Garamond, "Cormorant Garamond";
+    font-size: 80%;
+    font-family: "Cormorant Garamond", Garamond;
 }
 
 .titleleft {
@@ -34,19 +34,19 @@
 }
 
 .subtitlewrapper {
-    margin-top: -5px;
+    margin-top: -10px;
     overflow: hidden; /* add this to contain floated children */
 }
 
 .titlename {
     font-size: 300%;
     /*font-family: "Gentium Basic"; */
-    font-family: Garamond, "Cormorant Garamond"; 
+    font-family: "Cormorant Garamond", Garamond; 
     color: #999;
 }
 
 .subtitle {
-    font-family: Garamond, "Cormorant Garamond";
+    font-family: "Cormorant Garamond", Garamond;
     font-size: 100%;
 }
 
@@ -55,7 +55,7 @@ body {
 }
 
 a.titlelink:link, a.titlelink:visited {
-    font-family: Garamond, "Cormorant Garamond";
+    font-family: "Cormorant Garamond", Garamond;
     color: #999;
     text-decoration: none;
     font-size: 150%;
@@ -85,17 +85,17 @@ a:hover, a:active {
 }
 
 h1 {
-    font-family: Garamond, "Cormorant Garamond";
+    font-family: "Cormorant Garamond", Garamond;
     color: #999;
 }
 
 h2 {
-    font-family: Garamond, "Cormorant Garamond";
+    font-family: "Cormorant Garamond", Garamond;
     color: #999;
 }
 
 h3 {
-    font-family: Garamond, "Cormorant Garamond";
+    font-family: "Cormorant Garamond", Garamond;
     color: #999;
 }
 
