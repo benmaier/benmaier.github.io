@@ -4,7 +4,7 @@
 //======================== Network and Force Layout =========================
 
 
-var width = 500,
+var width = 350,
     height = 350;
 var opacity = 0.8;
 var d_opac = 0.6;
