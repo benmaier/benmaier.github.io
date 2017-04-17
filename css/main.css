@@ -22,6 +22,7 @@
     bottom: 0; */
     font-size: 80%;
     font-family: "Cormorant Garamond", Garamond;
+    clear: left;
 }
 
 .titleleft {
@@ -84,6 +85,7 @@ a.titlelink:hover, a.titlelink:active {
 .bodymainleft {
     max-width: 630px;
     float: left;
+    clear: left;
 }
 
 .bodymainright {
