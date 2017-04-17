@@ -67,11 +67,28 @@ a.titlelink:hover, a.titlelink:active {
 }
 
 .bodymain {
-    max-width: 630px;
     padding: 30px;
     font-family: "Roboto";
     font-size: 90%;
-    text-align: left;
+}
+
+.bodymainwrapper{
+    padding:0;
+    margin:0;
+    font-family: "Roboto";
+    font-size: 90%;
+    /*text-align: left;*/
+    clear: left;
+}
+
+.bodymainleft {
+    max-width: 630px;
+    float: left;
+}
+
+.bodymainright {
+    float: left;
+    padding-left:30px;
 }
 
 a:link, a:visited {
