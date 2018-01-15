@@ -19,8 +19,8 @@
 <div id="option">
     <input name="updateButton" 
            type="button" 
-           value="Update" 
-           onclick="updateData()" />
+           value="Switch cartogram" 
+           onclick="switchmode()" />
 </div>
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script>
@@ -43,15 +43,21 @@ var cartodata;
 var c = d3.hsl("red");
 var colScale = d3.scaleLog().range([0.9,0.6]);
 
-var current = 'new';
+var ihour = 0;
 
-d3.json("ben_cartogram.json", function(error,cartogram_data) {
+var mode = 'original';
+
+var std_duration = 75;
+var duration = std_duration;
+
+var slowplays = 2;
+
+d3.json("ben_cartogram_hourly.json", function(error,cartogram_data) {
     cartodata = cartogram_data;
+
     xtrans.domain(cartogram_data.domain.x);
     ytrans.domain(cartogram_data.domain.y);
 
-
-    console.log(cartogram_data.new);
 
     var data_width = cartogram_data.domain.x[1] - cartogram_data.domain.x[0];
     var data_height = cartogram_data.domain.y[1] - cartogram_data.domain.y[0];
@@ -60,9 +66,14 @@ d3.json("ben_cartogram.json", function(error,cartogram_data) {
     svg.attr('height',height);
     ytrans.range([height,0])
 
-    colScale.domain([d3.min(cartodata.density),d3.max(cartodata.density)])
+    cartodata.original = rescale_points(cartodata.original);
+    for(var h=0; h<cartodata.timeseries.length; ++h) {
+        cartodata.timeseries[h].new = rescale_points(cartodata.timeseries[h].new);
+    }
+    colScale.domain([d3.min(cartodata.timeseries[ihour].density),
+                     d3.max(cartodata.timeseries[ihour].density)])
     //redraw();
-    polygons = rescale_points(cartogram_data.new);
+    polygons = rescale_points(cartogram_data.timeseries[ihour].new);
     polygon = polygon.data(polygons).enter().append("path").call(redrawPolygon);
 });
 
@@ -91,30 +102,67 @@ function redraw() {
 }
 
 function redrawPolygon(poly) {
+  var n = polygons.length;
   poly
       .transition()
-      .ease(d3.easeLinear)
-      .duration(500)
+      //.ease(d3.easeLinear)
+      .duration(duration)
       .attr("d", function(d) { return d ? "M" + d.join("L") + "Z" : null; })
       .attr("fill", function(d,i) {
-                c.l = colScale(cartodata.density[i]);
+                c.l = colScale(cartodata.timeseries[ihour].density[i]);
                 return c.toString();
               } )
       .attr("stroke", function(d,i) {
-                c.l = colScale(cartodata.density[i]);
+                c.l = colScale(cartodata.timeseries[ihour].density[i]);
                 return c.toString();
-              } );
+              } ) 
+      .on("end",function (){
+                --n;
+                if(n==0) {
+                updateData();
+                }
+        })
+      ;
 }
 
 function updateData() {
-    if (current == 'new')
-        current = 'original';
-    else if (current == 'original')
-        current = 'new';
-    polygons = rescale_points(cartodata[current]);
-    console.log(current);
+    ihour++;
+    if (ihour == cartodata.timeseries.length) {
+        ihour = 0;
+    }
+    if (mode == 'original')
+        polygons = cartodata.original;
+    else
+        polygons = cartodata.timeseries[ihour].new;
+    colScale.domain([d3.min(cartodata.timeseries[ihour].density),
+                     d3.max(cartodata.timeseries[ihour].density)])
+
+    if (slowplays>0){
+        duration = 1000;
+        slowplays--;
+    } else {
+        duration = 75;
+    }
     redraw();
 }
+
+function endAll(transition, callback) { 
+    if (typeof callback !== "function") throw new Error("Wrong callback in endall");
+    if (transition.size() === 0) { callback() }
+    var n = 0; 
+    transition 
+        .each(function() { ++n; }) 
+        .each("end", function() { if (!--n) callback.apply(this, arguments); }); 
+} 
+
+function switchmode() { 
+    if (mode == 'original')
+        mode = 'new';
+    else
+        mode = 'original';
+    slowplays = 1;
+}
+
 
 </script>
 
