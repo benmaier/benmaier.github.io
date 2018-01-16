@@ -1,0 +1,398 @@
+<meta charset="utf-8">
+<canvas width="768" height="500"></canvas>
+<div id="option">
+    <input name="updateButton" 
+           type="button" 
+           value="Switch cartogram" 
+           onclick="switchmode()" />
+</div>
+<div id="text">
+    <input name="labelButton" 
+           type="button" 
+           value="Switch labels on/off" 
+           onclick="switchlabels()" />
+</div>
+slow<input id="speed" type="range" min="-1.5" max="0" step="0.01" value="-0.15"/>fast<br/>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script>
+
+var canvas,
+    context,
+    width,
+    height;
+
+var polygons = [];
+var centroids = [];
+var density = [];
+var xtrans = d3.scaleLinear().range([0,width]); 
+var ytrans = d3.scaleLinear().range([height,0]);
+
+var cartodata;
+
+var c = d3.hsl("red");
+var colScale = d3.scaleLog().range([0.85,0.6]);
+
+var ihour = 0;
+
+var mode = 'original';
+
+var std_interp_value = 0.25;
+var max_interp_value = 0.4;
+document.getElementById('speed').addEventListener('input', function() {
+        var this_value = +this.value;
+        std_interp_value = max_interp_value * Math.pow(10,this_value);
+        interp_dp = std_interp_value;
+});
+//var std_interp_value = 0.1;
+var switching_interp_value = 0.02;
+//var std_interp_value = 0.5;
+//var std_interp_value = 0.133333334;
+var interp_dp = std_interp_value;
+var interpolation_value = 0;
+var polygonScales = [];
+var densityScales = [];
+var modeSwitched = false;
+var slowplays = 0;
+var currently_switching = false;
+var aggregated;
+
+var show_labels = true;
+
+labels =  {
+            '12435': 'home',
+            '13353': 'work',
+            '10409': 'relationship',
+            '12043': 'friends',
+            '12629': 'parents',
+            '12489': 'uni'
+          },
+d3.json("ben_cartogram_hourly.json", function(error,cartogram_data) {
+
+    // get data
+    cartodata = cartogram_data;
+    aggregated = cartodata.aggregated;
+
+    // get coordinate domains for x and y
+    var data_width = cartogram_data.domain.x[1] - cartogram_data.domain.x[0];
+    var data_height = cartogram_data.domain.y[1] - cartogram_data.domain.y[0];
+    var aspect = data_width/data_height;
+    
+    // calculate canvas height according to data aspect ratio
+    width = +d3.select("canvas").attr("width");
+    height = width / aspect;
+    d3.select("canvas").attr('height',height);
+
+    canvas = d3.select("canvas").node(),
+    context = canvas.getContext("2d");    
+
+    // initialize scales for coordinate transformations
+    xtrans = d3.scaleLinear().range([0,width]).domain(cartogram_data.domain.x);
+    ytrans = d3.scaleLinear().range([height,0]).domain(cartogram_data.domain.y);
+
+    // rescale coordinates for canvas and flatten density values
+    var densities = [];
+    cartodata.original = rescale_points(cartodata.original);
+    for(var h=0; h<cartodata.timeseries.length; ++h) {
+        //rescale coords
+        cartodata.timeseries[h].new = rescale_points(cartodata.timeseries[h].new);
+
+        //flatten density
+        densities.push([]);
+        for(var i=0; i<cartodata.original.length; i++){
+            densities[h].push(get_ward_mean_over_3_hours(i,h));
+        }
+    }
+
+    // set flattened density
+    for(var h=0; h<cartodata.timeseries.length; ++h) {
+        cartodata.timeseries[h].density = densities[h];
+    }
+
+    // init scales for polygon transitions
+    for(var i=0; i<cartodata.original.length; i++){
+        polygonScales.push(Array());
+        for(var j=0; j<cartodata.original[i].length; j++){
+            polygonScales[i].push([
+                       d3.scaleLinear().domain([0,1]),
+                       d3.scaleLinear().domain([0,1])
+                ]);
+        }
+        densityScales.push(d3.scaleLinear().domain([0,1]));
+
+    }
+
+    //init scales for densities
+    var mins = [],
+        maxs = [];
+
+    for(var h=0; h<cartodata.timeseries.length; ++h) {
+        mins.push(d3.min(cartodata.timeseries[h].density));
+        maxs.push(d3.max(cartodata.timeseries[h].density));
+    }
+
+    // init scale domain for colors
+    colScale.domain([d3.min(mins),
+                     d3.max(maxs)])
+
+    // polygons are first set to the heart
+
+    density = cartogram_data.timeseries[ihour].density;
+
+    if (mode=='original') {
+        initialize_polygons(cartodata.original);
+        //new_polygons = cartodata.original;
+        //interp_dp = switching_interp_value;
+    } else {
+        initialize_polygons(cartogram_data.timeseries[ihour].new);
+        new_polygons = cartogram_data.timeseries[(ihour+1)%cartogram_data.timeseries.length].new;
+    }
+
+    for(var i=0; i<cartodata.original.length; i++){
+        centroids.push(d3.polygonCentroid(polygons[i]));
+    }
+
+    if( mode=='new') {
+        updatePolygonScales(
+                            polygons,
+                            new_polygons
+                           );
+        updatePolygons();
+    }
+    updateDensityScales();
+    //draw(ihour);
+    animate_hourly();
+});
+
+function draw(old_hour) {
+
+  context.clearRect(0, 0, width, height);
+  //context.beginPath();
+  context.fillStyle = "#f00";
+  context.strokeStyle = "#000";
+
+  for (var i = 0, n = polygons.length; i < n; ++i) 
+  {
+      drawCell(i);
+  }
+  
+  if (show_labels) {
+      for (var i = 0, n = polygons.length; i < n; ++i)
+      {
+          if (labels.hasOwnProperty(cartodata.attributes[i].PLZ99)) {
+              context.fillStyle = "black";
+              context.font = "15px Arial";
+              context.textAlign = "center";
+              context.textBaseline = "middle";
+              context.fillText(labels[cartodata.attributes[i].PLZ99],
+                               centroids[i][0],centroids[i][1]);
+          }
+      }
+  }
+  context.fillStyle = "black";
+  context.font = "30px Arial";
+  context.textAlign = "right";
+  context.textBaseline = "top";
+  context.fillText(cartodata.timeseries[old_hour].time,
+                   width-width/40,height/10);
+
+  //context.fill();
+}
+
+function initialize_polygons(poly) {    
+    for(var h=0; h<poly.length; ++h) {
+        //rescale coords
+        polygons.push([]);
+        for(var i=0; i<poly[h].length; i++){
+            polygons[h].push([poly[h][i][0],poly[h][i][1]]);
+        }
+    }
+
+}
+
+function rescale_points(polygons) {
+
+    var new_polys = Array();
+    for(var i=0; i<polygons.length; i++){
+        new_poly = Array();
+        for(var j=0; j<polygons[i].length; j++){
+            var this_array = Array();
+            this_array.push(xtrans(polygons[i][j][0]));
+            this_array.push(ytrans(polygons[i][j][1]));
+            new_poly.push(this_array);
+        }
+        new_polys.push(new_poly);
+    }
+
+    return new_polys;
+}
+
+function updatePolygonScales(old_p,new_p) {
+    for(var i=0; i<cartodata.original.length; i++){
+        for(var j=0; j<cartodata.original[i].length; j++){
+            polygonScales[i][j][0].range([old_p[i][j][0], new_p[i][j][0]]);
+            polygonScales[i][j][1].range([old_p[i][j][1], new_p[i][j][1]]);
+        }
+    }
+}
+
+function updateDensityScales() {
+    var old_density = cartodata.timeseries[ihour].density;
+    var new_density = cartodata.timeseries[(ihour+1)%cartodata.timeseries.length].density;
+
+    for(var i=0; i<cartodata.original.length; i++){
+        densityScales[i].range([old_density[i],new_density[i]]);
+    }
+}
+        
+
+function updatePolygons() {
+    for(var i=0; i<cartodata.original.length; i++){
+        for(var j=0; j<cartodata.original[i].length; j++){
+            polygons[i][j][0] = polygonScales[i][j][0](interpolation_value);
+            polygons[i][j][1] = polygonScales[i][j][1](interpolation_value);
+        }
+        centroids[i] = d3.polygonCentroid(polygons[i]);
+    }
+}
+
+function updateDensity() {
+    for(var i=0; i<cartodata.original.length; i++){
+        density[i] = densityScales[i](interpolation_value);
+    }
+}
+
+function animate_hourly() {
+
+    var t = d3.interval(function() {
+
+        var new_polygons, old_polygons;
+        var do_update = true;
+        var old_hour = ihour;
+
+        if (interpolation_value < 1) {
+
+                interpolation_value += interp_dp;
+
+        } else {
+
+
+            if (modeSwitched) 
+                modeSwitched = false;
+            else
+                ihour = (ihour+1)%cartodata.timeseries.length;
+
+            if (mode=='new') {
+                old_polygons = cartodata.timeseries[ihour].new;
+                new_polygons = cartodata.timeseries[(ihour+1)%cartodata.timeseries.length].new;
+                updatePolygonScales(old_polygons,new_polygons);
+            }
+
+
+            updateDensityScales();
+            interpolation_value = 0;
+            interp_dp = std_interp_value;
+        }
+
+        if (interpolation_value < 1) {
+
+            if ( (mode=='new') || ( (mode=='original') &&(modeSwitched) ) )
+            {
+                updatePolygons();
+            }
+        
+        /*
+        if ((mode == 'new') || ( (mode=='original') && (!modeSwitched) ) ){
+            console.log("polygon update");
+            updatePolygons();
+        } else if mode(){
+
+            console.log("hallo");
+            polygons = cartodata.orginal;
+        }
+
+            console.log(polygons);
+            console.log(cartodata.original);
+            console.log(mode);
+
+        */
+            updateDensity();
+            draw(old_hour);
+        }
+
+    }, 1);
+}
+
+function drawCell(i) {
+  context.beginPath();
+  var cell = polygons[i];
+  var dens = density[i];
+  //console.log(dens);
+  c.l = colScale(dens);
+  context.fillStyle = c.toString();
+  context.strokeStyle = c.toString();
+  context.lineWidth=1;
+  if (!cell) return false;
+  context.moveTo(cell[0][0], cell[0][1]);
+  for (var j = 1, m = cell.length; j < m; ++j) {
+    context.lineTo(cell[j][0], cell[j][1]);
+  }
+  context.stroke();
+  context.fill();
+  context.closePath();
+  return true;
+}
+
+function switchmode() { 
+    var old_polygons, new_polygons;
+    if (!modeSwitched) {
+        if (mode == 'original')
+            mode = 'new';
+        else
+            mode = 'original';
+
+        modeSwitched = true;
+
+        if (mode=='original')
+        {
+            old_polygons = polygons;
+            new_polygons = cartodata.original;
+        }
+        if (mode=='new')
+        {
+            old_polygons = cartodata.original;
+            new_polygons = cartodata.timeseries[ihour].new;
+        }
+
+        interpolation_value = 0;
+        interp_dp = switching_interp_value;
+        updatePolygonScales(old_polygons,new_polygons);
+    }
+}
+
+function switchstaticmode() {
+    
+}
+
+function get_ward_mean_over_3_hours(i,hour) {
+    var hmin = hour-1;
+    if (hmin < 0)
+        hmin = cartodata.timeseries.length - 1;
+
+    var hmax = hour+1;
+    if (hmax == cartodata.timeseries.length)
+        hmax = 0;
+
+    var dens0 = cartodata.timeseries[hour].density[i];
+    var densmin = cartodata.timeseries[hmin].density[i];
+    var densmax = cartodata.timeseries[hmax].density[i];
+
+    return( 0.6*densmin + 0.6*densmax + 1*dens0 ) / 2.2;
+}
+
+function switchlabels() {
+    show_labels = !show_labels; 
+}
+
+
+</script>
+
