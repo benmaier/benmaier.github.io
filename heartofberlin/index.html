@@ -1,25 +1,34 @@
 <meta charset="utf-8">
-<canvas width="768" height="500" id="heart"></canvas>
-<div id="option">
-    <input name="updateButton" 
-           type="button" 
-           value="Switch cartogram" 
-           onclick="switchmode()" />
-</div>
-<div id="text">
-    <input name="labelButton" 
-           type="button" 
-           value="Switch labels on/off" 
-           onclick="switchlabels()" />
-</div>
-slow<input id="speed" type="range" min="-1.5" max="0" step="0.01" value="-0.15"/>fast<br/>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+<script>
+  WebFont.load({
+    google: {
+      families: ['Oswald']
+    }
+  });
+</script>
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.0.1/spin.min.js'></script> 
+<script src='widgets.js'></script> 
+<script src='berlin_widgets.js'></script> 
+<link rel="stylesheet" type="text/css" href="main.css">
+<link rel="stylesheet" type="text/css" href="widgets.css">
+</head>
+<body>
+
+<div id='main'>
+    <div id='leftheader'>
+    HEART OF BERLIN
+    </div>
+    <canvas></canvas>
+    <svg></svg>
+</div>
 <script>
 
 var canvas,
     context,
-    width,
+    width = 768,
     height;
 
 var polygons = [];
@@ -30,8 +39,16 @@ var ytrans = d3.scaleLinear().range([height,0]);
 
 var cartodata;
 
+var bg_color = "black";
+if (bg_color == "black") {
+    var font_color = 'white';
+    var colScale = d3.scaleLog().range([0.15,0.4]);
+} else {
+    var font_color = 'black';
+    var colScale = d3.scaleLog().range([0.85,0.6]);
+}
+
 var c = d3.hsl("red");
-var colScale = d3.scaleLog().range([0.85,0.6]);
 
 var ihour = 0;
 
@@ -39,11 +56,6 @@ var mode = 'original';
 
 var std_interp_value = 0.25;
 var max_interp_value = 0.4;
-document.getElementById('speed').addEventListener('input', function() {
-        var this_value = +this.value;
-        std_interp_value = max_interp_value * Math.pow(10,this_value);
-        interp_dp = std_interp_value;
-});
 //var std_interp_value = 0.1;
 var switching_interp_value = 0.02;
 //var std_interp_value = 0.5;
@@ -61,21 +73,46 @@ var main_timer;
 
 var show_labels = true;
 
-labels =  {
+var all_labels =  [
+{
+'10119':    'Mitte / Prenzlauer Berg',  
+'10247':    'Friedrichshain',
+'10367':    'Lichtenberg',
+'10967':    'Kreuzberg',
+'10557':    'Tiergarten',
+'10585':    'Charlottenburg',
+'10717':    'Wilmersdorf',
+'12049':    'Neukölln',
+'12165':    'Steglitz',
+'12099':    'Tempelhof',
+'12435':    'Treptow',
+'12629':    'Hellersdorf',
+'12681':    'Marzahn',
+'14167':    'Zehlendorf',
+'12557':    'Köpenick',
+'13353':    'Wedding',
+'13589':    'Spandau',
+'13088':    'Weißensee'},
+            {
             '12435': 'home',
             '13353': 'work',
             '10409': 'relationship',
             '12043': 'friends',
             '12629': 'parents',
-            '12489': 'uni'
-          },
+            '12489': 'uni'},
+            {}
 
+          ]
+var labels = all_labels[1];
+
+
+var first_run_of_initialize = true;
 
 initialize_heart("ben_cartogram_hourly.json");
 
 function initialize_heart(filename) {
 
-    var spinnertarget = document.getElementById('#heart');
+    var spinnertarget = document.getElementById('heart');
     // loader settings
     var opts = {
       lines: 9, // The number of lines to draw
@@ -85,7 +122,7 @@ function initialize_heart(filename) {
       color: '#EE3124', // #rgb or #rrggbb or array of colors
       speed: 1.9, // Rounds per second
       trail: 40, // Afterglow percentage
-      className: 'spinner', // The CSS class to assign to the spinner
+      className: 'heartspinner', // The CSS class to assign to the spinner
     };
     var spinner = new Spinner(opts).spin(spinnertarget);
 
@@ -101,9 +138,10 @@ function initialize_heart(filename) {
         var aspect = data_width/data_height;
         
         // calculate canvas height according to data aspect ratio
-        width = +d3.select("canvas").attr("width");
         height = width / aspect;
-        d3.select("canvas").attr('height',height);
+        d3.select("canvas")
+            .attr('height',height)
+            .attr('width',width);
 
         canvas = d3.select("canvas").node(),
         context = canvas.getContext("2d");    
@@ -184,13 +222,22 @@ function initialize_heart(filename) {
         updateDensityScales();
         //draw(ihour);
         spinner.stop()
+         
+        if (first_run_of_initialize) {
+            first_run_of_initialize = false;
+            start_widgets();
+
+        }
         animate_hourly();
     });
 }
 
 function draw(old_hour) {
 
+
   context.clearRect(0, 0, width, height);
+  context.fillStyle = bg_color;
+  context.fillRect(0,0,width,height);
   //context.beginPath();
   context.fillStyle = "#f00";
   context.strokeStyle = "#000";
@@ -204,8 +251,8 @@ function draw(old_hour) {
       for (var i = 0, n = polygons.length; i < n; ++i)
       {
           if (labels.hasOwnProperty(cartodata.attributes[i].PLZ99)) {
-              context.fillStyle = "black";
-              context.font = "15px Arial";
+              context.fillStyle = font_color;
+              context.font = "15px Oswald";
               context.textAlign = "center";
               context.textBaseline = "middle";
               context.fillText(labels[cartodata.attributes[i].PLZ99],
@@ -213,12 +260,12 @@ function draw(old_hour) {
           }
       }
   }
-  context.fillStyle = "black";
-  context.font = "30px Arial";
+  context.fillStyle = font_color;
+  context.font = "bold 30px Oswald";
   context.textAlign = "right";
   context.textBaseline = "top";
   context.fillText(cartodata.timeseries[old_hour].time,
-                   width-width/40,height/10);
+                   width,0);
 
   //context.fill();
 }
@@ -418,6 +465,13 @@ function switchlabels() {
     show_labels = !show_labels; 
 }
 
+function adjustSpeed(this_value) {
+        std_interp_value = max_interp_value * Math.pow(10,this_value);
+        interp_dp = std_interp_value;
+        console.log(interp_dp);
+}
 
 </script>
 
+
+</body>

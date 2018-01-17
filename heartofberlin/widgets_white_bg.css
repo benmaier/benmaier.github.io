@@ -8,55 +8,55 @@
 }
 
 .radiobutton-background {
-	fill: #888;
-	stroke:#fff;
-		stroke-width:0.9px;
+	fill: #ddd;
+	stroke:#000;
+		stroke-width:0.5px;
 }
 
 .radiobutton-off {
-	fill: #000;
-		stroke:#fff;
+	fill: #fff;
+		stroke:#000;
 	pointer-events: none;
-		stroke-width:0.9px;
+		stroke-width:0.5px;
 }
 
 .radiobutton-on {
-	fill: #fff;
-		stroke:#fff;
+	fill: #000;
+		stroke:#000;
 	pointer-events: none;
-		stroke-width:0.9px;
+		stroke-width:0.5px;
 }
 
 .radiobutton-hover {
 	fill: #bbb;
-		stroke:#fff;
+		stroke:#000;
 	pointer-events: none;
-		stroke-width:0.9px;
+		stroke-width:0.5px;
 }
 
 .button {
 	fill:none;
-	stroke:#fff;
-	stroke-width:0.9px;
+	stroke:#000;
+	stroke-width:0.5px;
 }
 
 .button-background {
-	fill: #888;
+	fill: #ddd;
 	cursor: pointer;
 }
 
 .button-background-hover {
-	fill: #888;
+	fill: #ddd;
 	cursor: pointer;
 }
 
 .button-background-lit{
-	fill: #888;
+	fill: #ddd;
 	cursor: pointer;
 }
 
 .button-symbol {
-	fill: #000;
+	fill: #fff;
 	pointer-events: none;
 }
 
@@ -67,37 +67,37 @@
 }
 
 .button-symbol-lit {
-		fill: #fff;
+		fill: #000;
 		pointer-events: none;
 }
 
 .handle {
-  fill: #000;
-  stroke: #fff;
+  fill: #fff;
+  stroke: #000;
   stroke-opacity: 1;
-  stroke-width: 0.9px;
+  stroke-width: .5px;
 
 }
 
 .tag {
   font-size: 10px; 
   font-family: sans-serif;
-  fill:#fff;
+  fill:black;
   stroke:none;
 }
 
  .track {
-  stroke: #fff;
+  stroke: #000;
   stroke-width: 4px;
 }
 
  .track-inset {
-  stroke: #888;
+  stroke: #ddd;
   stroke-width: 2px;
 }
 
  .track-inset-lit {
-  stroke: #fff;
+  stroke: #100000;
   stroke-width: 2px;
 }
 
