@@ -1,5 +1,5 @@
 <meta charset="utf-8">
-<canvas width="768" height="500"></canvas>
+<canvas width="768" height="500" id="heart"></canvas>
 <div id="option">
     <input name="updateButton" 
            type="button" 
@@ -14,6 +14,7 @@
 </div>
 slow<input id="speed" type="range" min="-1.5" max="0" step="0.01" value="-0.15"/>fast<br/>
 <script src="https://d3js.org/d3.v4.min.js"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.0.1/spin.min.js'></script> 
 <script>
 
 var canvas,
@@ -56,6 +57,8 @@ var slowplays = 0;
 var currently_switching = false;
 var aggregated;
 
+var main_timer;
+
 var show_labels = true;
 
 labels =  {
@@ -66,102 +69,124 @@ labels =  {
             '12629': 'parents',
             '12489': 'uni'
           },
-d3.json("ben_cartogram_hourly.json", function(error,cartogram_data) {
 
-    // get data
-    cartodata = cartogram_data;
-    aggregated = cartodata.aggregated;
 
-    // get coordinate domains for x and y
-    var data_width = cartogram_data.domain.x[1] - cartogram_data.domain.x[0];
-    var data_height = cartogram_data.domain.y[1] - cartogram_data.domain.y[0];
-    var aspect = data_width/data_height;
-    
-    // calculate canvas height according to data aspect ratio
-    width = +d3.select("canvas").attr("width");
-    height = width / aspect;
-    d3.select("canvas").attr('height',height);
+initialize_heart("ben_cartogram_hourly.json");
 
-    canvas = d3.select("canvas").node(),
-    context = canvas.getContext("2d");    
+function initialize_heart(filename) {
 
-    // initialize scales for coordinate transformations
-    xtrans = d3.scaleLinear().range([0,width]).domain(cartogram_data.domain.x);
-    ytrans = d3.scaleLinear().range([height,0]).domain(cartogram_data.domain.y);
+    var spinnertarget = document.getElementById('#heart');
+    // loader settings
+    var opts = {
+      lines: 9, // The number of lines to draw
+      length: 9, // The length of each line
+      width: 5, // The line thickness
+      radius: 14, // The radius of the inner circle
+      color: '#EE3124', // #rgb or #rrggbb or array of colors
+      speed: 1.9, // Rounds per second
+      trail: 40, // Afterglow percentage
+      className: 'spinner', // The CSS class to assign to the spinner
+    };
+    var spinner = new Spinner(opts).spin(spinnertarget);
 
-    // rescale coordinates for canvas and flatten density values
-    var densities = [];
-    cartodata.original = rescale_points(cartodata.original);
-    for(var h=0; h<cartodata.timeseries.length; ++h) {
-        //rescale coords
-        cartodata.timeseries[h].new = rescale_points(cartodata.timeseries[h].new);
+    d3.json("ben_cartogram_hourly.json", function(error,cartogram_data) {
 
-        //flatten density
-        densities.push([]);
+        // get data
+        cartodata = cartogram_data;
+        aggregated = cartodata.aggregated;
+
+        // get coordinate domains for x and y
+        var data_width = cartogram_data.domain.x[1] - cartogram_data.domain.x[0];
+        var data_height = cartogram_data.domain.y[1] - cartogram_data.domain.y[0];
+        var aspect = data_width/data_height;
+        
+        // calculate canvas height according to data aspect ratio
+        width = +d3.select("canvas").attr("width");
+        height = width / aspect;
+        d3.select("canvas").attr('height',height);
+
+        canvas = d3.select("canvas").node(),
+        context = canvas.getContext("2d");    
+
+        // initialize scales for coordinate transformations
+        xtrans = d3.scaleLinear().range([0,width]).domain(cartogram_data.domain.x);
+        ytrans = d3.scaleLinear().range([height,0]).domain(cartogram_data.domain.y);
+
+        // rescale coordinates for canvas and flatten density values
+        var densities = [];
+        cartodata.original = rescale_points(cartodata.original);
+        for(var h=0; h<cartodata.timeseries.length; ++h) {
+            //rescale coords
+            cartodata.timeseries[h].new = rescale_points(cartodata.timeseries[h].new);
+
+            //flatten density
+            densities.push([]);
+            for(var i=0; i<cartodata.original.length; i++){
+                densities[h].push(get_ward_mean_over_3_hours(i,h));
+            }
+        }
+
+        // set flattened density
+        for(var h=0; h<cartodata.timeseries.length; ++h) {
+            cartodata.timeseries[h].density = densities[h];
+        }
+
+        // init scales for polygon transitions
         for(var i=0; i<cartodata.original.length; i++){
-            densities[h].push(get_ward_mean_over_3_hours(i,h));
+            polygonScales.push(Array());
+            for(var j=0; j<cartodata.original[i].length; j++){
+                polygonScales[i].push([
+                           d3.scaleLinear().domain([0,1]),
+                           d3.scaleLinear().domain([0,1])
+                    ]);
+            }
+            densityScales.push(d3.scaleLinear().domain([0,1]));
+
         }
-    }
 
-    // set flattened density
-    for(var h=0; h<cartodata.timeseries.length; ++h) {
-        cartodata.timeseries[h].density = densities[h];
-    }
+        //init scales for densities
+        var mins = [],
+            maxs = [];
 
-    // init scales for polygon transitions
-    for(var i=0; i<cartodata.original.length; i++){
-        polygonScales.push(Array());
-        for(var j=0; j<cartodata.original[i].length; j++){
-            polygonScales[i].push([
-                       d3.scaleLinear().domain([0,1]),
-                       d3.scaleLinear().domain([0,1])
-                ]);
+        for(var h=0; h<cartodata.timeseries.length; ++h) {
+            mins.push(d3.min(cartodata.timeseries[h].density));
+            maxs.push(d3.max(cartodata.timeseries[h].density));
         }
-        densityScales.push(d3.scaleLinear().domain([0,1]));
 
-    }
+        // init scale domain for colors
+        colScale.domain([d3.min(mins),
+                         d3.max(maxs)])
 
-    //init scales for densities
-    var mins = [],
-        maxs = [];
+        // polygons are first set to the heart
 
-    for(var h=0; h<cartodata.timeseries.length; ++h) {
-        mins.push(d3.min(cartodata.timeseries[h].density));
-        maxs.push(d3.max(cartodata.timeseries[h].density));
-    }
+        density = cartogram_data.timeseries[ihour].density;
 
-    // init scale domain for colors
-    colScale.domain([d3.min(mins),
-                     d3.max(maxs)])
+        if (mode=='original') {
+            initialize_polygons(cartodata.original);
+            //new_polygons = cartodata.original;
+            //interp_dp = switching_interp_value;
+        } else {
+            initialize_polygons(cartogram_data.timeseries[ihour].new);
+            new_polygons = cartogram_data.timeseries[(ihour+1)%cartogram_data.timeseries.length].new;
+        }
 
-    // polygons are first set to the heart
+        for(var i=0; i<cartodata.original.length; i++){
+            centroids.push(d3.polygonCentroid(polygons[i]));
+        }
 
-    density = cartogram_data.timeseries[ihour].density;
-
-    if (mode=='original') {
-        initialize_polygons(cartodata.original);
-        //new_polygons = cartodata.original;
-        //interp_dp = switching_interp_value;
-    } else {
-        initialize_polygons(cartogram_data.timeseries[ihour].new);
-        new_polygons = cartogram_data.timeseries[(ihour+1)%cartogram_data.timeseries.length].new;
-    }
-
-    for(var i=0; i<cartodata.original.length; i++){
-        centroids.push(d3.polygonCentroid(polygons[i]));
-    }
-
-    if( mode=='new') {
-        updatePolygonScales(
-                            polygons,
-                            new_polygons
-                           );
-        updatePolygons();
-    }
-    updateDensityScales();
-    //draw(ihour);
-    animate_hourly();
-});
+        if( mode=='new') {
+            updatePolygonScales(
+                                polygons,
+                                new_polygons
+                               );
+            updatePolygons();
+        }
+        updateDensityScales();
+        //draw(ihour);
+        spinner.stop()
+        animate_hourly();
+    });
+}
 
 function draw(old_hour) {
 
@@ -263,7 +288,7 @@ function updateDensity() {
 
 function animate_hourly() {
 
-    var t = d3.interval(function() {
+    main_timer = d3.interval(function() {
 
         var new_polygons, old_polygons;
         var do_update = true;
