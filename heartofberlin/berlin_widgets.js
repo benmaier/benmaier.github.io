@@ -66,13 +66,13 @@ function start_widgets() {
 
     // we first define the toggle parameters
 
-    var t1 = {id:"heart", name: "warp for time spent",  value: mode=='new'};
-    var t2 = {id:"hourly", name: "show hourly",  value: true};
+    var t1 = {id:"heart", name: "heart on/off",  value: mode=='new'};
+    var t2 = {id:"hourly", name: "24h aggregation",  value: false};
 
     // now the array of toggle objets
 
     var toggles = [
-        widget.toggle(t2).label("right"),
+        widget.toggle(t2).label("right").fontSize("20").label("right").size(20).border(3).update(function(d){switchDynamics();}),
         widget.toggle(t1).label("right").fontSize("20").label("right").size(20).border(3).update(function(d){switchmode();})
     ]
 

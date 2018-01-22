@@ -24,7 +24,7 @@
     <canvas></canvas>
     <svg></svg>
 </div>
-<div id='heart'  style="position:fixed;top:50%;left:50%">
+<div id='heart'>
 </div>
 <script>
 
@@ -44,7 +44,7 @@ var cartodata;
 var bg_color = "black";
 if (bg_color == "black") {
     var font_color = 'white';
-    var colScale = d3.scaleLog().range([0.15,0.4]);
+    var colScale = d3.scaleLog().range([0.15,0.4]).clamp(true);
 } else {
     var font_color = 'black';
     var colScale = d3.scaleLog().range([0.85,0.6]);
@@ -70,6 +70,8 @@ var modeSwitched = false;
 var slowplays = 0;
 var currently_switching = false;
 var aggregated;
+var dynamics = 'dynamic';
+var dynamic_color_domain = [];
 
 var main_timer;
 
@@ -165,6 +167,8 @@ function initialize_heart(filename) {
                 densities[h].push(get_ward_mean_over_3_hours(i,h));
             }
         }
+        aggregated.original = rescale_points(aggregated.original);
+        aggregated.new = rescale_points(aggregated.new);
 
         // set flattened density
         for(var h=0; h<cartodata.timeseries.length; ++h) {
@@ -188,14 +192,15 @@ function initialize_heart(filename) {
         var mins = [],
             maxs = [];
 
+        
         for(var h=0; h<cartodata.timeseries.length; ++h) {
             mins.push(d3.min(cartodata.timeseries[h].density));
             maxs.push(d3.max(cartodata.timeseries[h].density));
         }
 
         // init scale domain for colors
-        colScale.domain([d3.min(mins),
-                         d3.max(maxs)])
+        dynamic_color_domain = [d3.min(mins),d3.max(maxs)];
+        colScale.domain(dynamic_color_domain);
 
         // polygons are first set to the heart
 
@@ -221,7 +226,8 @@ function initialize_heart(filename) {
                                );
             updatePolygons();
         }
-        updateDensityScales();
+        updateDensityScales(cartogram_data.timeseries[ihour].density,
+                            cartogram_data.timeseries[(ihour+1)%cartogram_data.timeseries.length].density);
         //draw(ihour);
         spinner.stop()
          
@@ -230,11 +236,11 @@ function initialize_heart(filename) {
             start_widgets();
 
         }
-        animate_hourly();
+        play();
     });
 }
 
-function draw(old_hour) {
+function draw(timestring) {
 
 
   context.clearRect(0, 0, width, height);
@@ -266,7 +272,7 @@ function draw(old_hour) {
   context.font = "bold 30px Oswald";
   context.textAlign = "right";
   context.textBaseline = "top";
-  context.fillText(cartodata.timeseries[old_hour].time,
+  context.fillText(timestring,
                    width,0);
 
   //context.fill();
@@ -309,12 +315,9 @@ function updatePolygonScales(old_p,new_p) {
     }
 }
 
-function updateDensityScales() {
-    var old_density = cartodata.timeseries[ihour].density;
-    var new_density = cartodata.timeseries[(ihour+1)%cartodata.timeseries.length].density;
-
+function updateDensityScales(old_d,new_d) {
     for(var i=0; i<cartodata.original.length; i++){
-        densityScales[i].range([old_density[i],new_density[i]]);
+        densityScales[i].range([old_d[i],new_d[i]]);
     }
 }
         
@@ -335,9 +338,21 @@ function updateDensity() {
     }
 }
 
-function animate_hourly() {
-
+function play() {
     main_timer = d3.interval(function() {
+            animate();
+            }, 1);
+}
+
+function stop() {
+    main_timer.stop();
+}
+
+function play_transition_to(new_polygons,new_density) {
+    var old_polygons = polygons;
+}
+
+function animate() {
 
         var new_polygons, old_polygons;
         var do_update = true;
@@ -349,6 +364,12 @@ function animate_hourly() {
 
         } else {
 
+            if (dynamics=='static')
+            {                
+                modeSwitched = false;
+                stop();
+                return ;
+            }
 
             if (modeSwitched) 
                 modeSwitched = false;
@@ -362,7 +383,10 @@ function animate_hourly() {
             }
 
 
-            updateDensityScales();
+            var old_d = cartodata.timeseries[ihour].density;
+            var new_d = cartodata.timeseries[(ihour+1)%cartodata.timeseries.length].density;
+
+            updateDensityScales(old_d,new_d);
             interpolation_value = 0;
             interp_dp = std_interp_value;
         }
@@ -390,10 +414,13 @@ function animate_hourly() {
 
         */
             updateDensity();
-            draw(old_hour);
+            if (dynamics=='static') {
+                var timestring = 'aggregated';
+            } else {
+                var timestring = cartodata.timeseries[old_hour].time;
+            }
+            draw(timestring);
         }
-
-    }, 1);
 }
 
 function drawCell(i) {
@@ -419,6 +446,9 @@ function drawCell(i) {
 function switchmode() { 
     var old_polygons, new_polygons;
     if (!modeSwitched) {
+        if (dynamics=='static')
+            stop();
+
         if (mode == 'original')
             mode = 'new';
         else
@@ -433,17 +463,75 @@ function switchmode() {
         }
         if (mode=='new')
         {
-            old_polygons = cartodata.original;
+            old_polygons = polygons;
+            if (dynamics=='dynamic')
+                new_polygons = cartodata.timeseries[ihour].new;
+            else 
+                new_polygons = aggregated.new;
+
+        }
+
+        if (dynamics=='dynamic') 
+            new_density = cartodata.timeseries[ihour].density;
+        else
+            new_density = aggregated.density;
+
+
+
+        interpolation_value = 0;
+        interp_dp = switching_interp_value;
+        updatePolygonScales(old_polygons,new_polygons);
+        updateDensityScales(density,new_density);
+
+        if (dynamics=='static')
+            play();
+    }
+}
+
+function switchDynamics() {
+    var old_polygons, new_polygons, old_density, new_density;
+    if (!modeSwitched) {
+        stop();
+
+        if (dynamics == 'dynamic') {
+            dynamics = 'static';
+        } else {
+            dynamics = 'dynamic';
+        }
+
+        modeSwitched = true;
+
+        old_polygons = polygons;
+
+        if (mode=='original'){
+            new_polygons = cartodata.original;
+        }
+        if (dynamics=='dynamic'){
+            new_density = cartodata.timeseries[ihour].density;
+        } else if (dynamics=='static') {
+            new_density = cartodata.aggregated.density;
+        }
+        if ((mode=='new') && (dynamics=='dynamic'))
+        {
             new_polygons = cartodata.timeseries[ihour].new;
+        }
+        if ((mode=='new') && (dynamics=='static'))
+        {
+            new_polygons = cartodata.aggregated.new;
+        }
+
+        if (dynamics=='dynamic') {
+            colScale.domain(dynamic_color_domain);
+        } else {
+            colScale.domain([d3.min(new_density),d3.max(new_density)]);
         }
 
         interpolation_value = 0;
         interp_dp = switching_interp_value;
         updatePolygonScales(old_polygons,new_polygons);
+        updateDensityScales(density,new_density);
+        play();
     }
-}
-
-function switchstaticmode() {
     
 }
 
