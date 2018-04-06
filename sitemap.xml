@@ -3,53 +3,53 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://example.org/post/science/</loc>
+    <loc>https://benmaier.org/post/science/</loc>
     <lastmod>2018-04-03T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://example.org/post/freelancing/</loc>
+    <loc>https://benmaier.org/post/freelancing/</loc>
     <lastmod>2018-04-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://example.org/post/uni/</loc>
+    <loc>https://benmaier.org/post/uni/</loc>
     <lastmod>2018-04-03T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://example.org/bio/</loc>
+    <loc>https://benmaier.org/bio/</loc>
     <lastmod>2018-04-05T21:05:33+05:30</lastmod>
   </url>
   
   <url>
-    <loc>https://example.org/</loc>
+    <loc>https://benmaier.org/</loc>
     <lastmod>2018-04-03T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://example.org/categories/</loc>
+    <loc>https://benmaier.org/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://example.org/contact/</loc>
+    <loc>https://benmaier.org/contact/</loc>
   </url>
   
   <url>
-    <loc>https://example.org/post/</loc>
+    <loc>https://benmaier.org/post/</loc>
     <lastmod>2018-04-03T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://example.org/tags/</loc>
+    <loc>https://benmaier.org/tags/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://example.org/categories/what-i-do/</loc>
+    <loc>https://benmaier.org/categories/what-i-do/</loc>
     <lastmod>2018-04-03T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
