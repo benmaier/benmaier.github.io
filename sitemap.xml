@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>http://benmaier.org/post/science/</loc>
+    <lastmod>2018-04-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://benmaier.org/post/freelancing/</loc>
+    <lastmod>2018-04-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://benmaier.org/post/uni/</loc>
+    <lastmod>2018-04-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://benmaier.org/bio/</loc>
+    <lastmod>2018-04-05T21:05:33+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://benmaier.org/</loc>
+    <lastmod>2018-04-03T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://benmaier.org/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://benmaier.org/contact/</loc>
+  </url>
+  
+  <url>
+    <loc>http://benmaier.org/post/</loc>
+    <lastmod>2018-04-03T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://benmaier.org/tags/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://benmaier.org/categories/what-i-do/</loc>
+    <lastmod>2018-04-03T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+</urlset>
