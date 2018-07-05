@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+<style>
+#content {
+  position: absolute;
+  width: auto;
+  height: auto;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  transform: translate(-50%, -50%);
+}
+.center {
+    margin: auto;
+    font-size: 80px;    
+    width: 50%;
+}
+</style>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <link rel="stylesheet" type="text/css" href="https://tonejs.github.io/assets/css/interface.css">
+    </head>
+<body style="font-family: Helvetica,Arial,sans; font-size: 17px;">
+
+<div id="content">
+    <!--
+  <button id="C4">C4</button>
+  <button id="E4">E4</button>
+  <button id="G4">G4</button>
+  <button id="B4">B4</button>
+    -->
+    <span class="center"></span>
+</div>
+
+<br/>
+<br/>
+<br/>
+<!-- <input id="log_dt" type="range" min="0" max="3" step="0.05" value="2" style="width:250px;"/> 
+<label id="speed">speed</label><br/> -->
+ <script src="https://d3js.org/d3.v4.min.js"></script>
+ <script src="https://tonejs.github.io/build/Tone.min.js"></script>
+ <script src="https://tonejs.github.io/Logo/build/Waveform.js"></script>
+<!--<script src="https://d3js.org/d3.v4.min.js"></script>-->
+<!-- <script src="keybinding.js"></script> -->
+<script>
+
+var synth = new Tone.AMSynth().toMaster()
+
+//attach a listener to all of the buttons
+document.querySelectorAll('button').forEach(function(button){
+	button.addEventListener('mousedown', function(e){
+		//play the note on mouse down
+		synth.triggerAttack(e.target.textContent)
+	})
+	button.addEventListener('mouseup', function(e){
+		//release on mouseup
+		synth.triggerRelease()
+	})
+})
+
+let node_names = [];
+let G = {};
+let current_node;
+let loop;
+
+d3.tsv("./beatles_blackbird.csv",function(data){
+        console.log(data);
+        data.forEach(function(d){
+            let source = d.source;
+            let target = d.target;
+            let weight = parseInt(d.weight);
+            parseNode(source);
+            parseNode(target);
+            G[source].weight_sum += weight;
+            G[source].neighbors.push({"id": target, "weight": weight});
+        });
+        //console.log(G);
+
+        current_node = getRandomNode();
+
+        //create a loop
+        loop = new Tone.Loop(loop_callback, "16n");
+        loop.start(0).stop("16m");
+
+        play();
+    }
+)
+
+function loop_callback(time)
+{
+    let frequency = G[current_node].frequency;
+    synth.triggerAttackRelease(frequency, "32t", time);
+    current_node = chooseRandomNeighbor(current_node);
+    console.log(current_node);
+    document.querySelector('span').textContent = current_node;
+}
+
+function play() {
+    Tone.Transport.start('+0.1');
+    console.log(loop);
+}
+
+function parseNode(node){
+    if (node_names.indexOf(node) < 0)
+    {
+        G[node] = {"frequency": string_to_frequency(node), "neighbors": [], "weight_sum": 0 };
+        node_names.push(node);
+    }
+}
+
+function getRandomNode(){
+    return node_names[Math.floor(Math.random()*node_names.length)];
+}
+
+function chooseRandomNeighbor(source){
+    let node = G[source];
+    let neighbors = node.neighbors;
+    let weight_sum = node.weight_sum;
+
+    if (neighbors.length == 0)
+        return getRandomNode();
+
+    let s = 0.0;
+    let a = Math.random() * weight_sum;
+    let i = 0;
+    while (s < a)
+    {
+        s += neighbors[i].weight;
+        ++i;
+    }
+    return neighbors[i-1].id;
+}
+
+function string_to_frequency(s)
+{
+    let note = parseInt(s.split("|")[0]);
+    let A = 69;
+    let A_frequency = 440;
+    return Math.pow(2,(note - A) / 12.0) * A_frequency;    
+}
+
+</script>
+</body>
