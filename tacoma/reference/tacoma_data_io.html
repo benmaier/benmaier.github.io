@@ -1,0 +1,491 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Data I/O module &mdash; tacoma 0.0.29 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Models conversion module" href="tacoma_model_conversions.html" />
+    <link rel="prev" title="Interactive module" href="tacoma_interactive.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> tacoma
+          
+
+          
+            
+            <img src="../_static/new_logo_very_small_2width.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0.29
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About this project</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Temporal networks</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../temporal_networks/temporal_network_classes.html">Temporal network classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../temporal_networks/verification_and_conversion.html">Verification and conversion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../temporal_networks/manipulating_temporal_networks.html">Manipulating temporal networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../temporal_networks/binning_and_sampling.html">Binning and sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../temporal_networks/read_write_and_share.html">Read, write and share</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Visualizations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../visualizations/drawing.html">Drawing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualizations/interactive.html">Interactive</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Structural and temporal analysis</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../structural_and_temporal_analysis/degree.html">Edge counts and degree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../structural_and_temporal_analysis/group_sizes_and_durations.html">Group sizes &amp; durations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../structural_and_temporal_analysis/social_trajectories.html">Social trajectories</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Epidemic Spreading</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../epidemic_spreading/gillespie.html">Dynamic Gillespie SSA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../epidemic_spreading/epidemic_classes.html">Epidemic classes</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Modeling</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modeling/flockworks.html">Flockworks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling/activity_model.html">Edge activity model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling/dynamic_rgg.html">Dynamic RGGs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling/zsbb.html">ZSSB model</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="cpp_core.html">Relevant C++-core classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tacoma_api.html">API module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tacoma_analysis.html">Analysis module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tacoma_tools.html">Tools module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tacoma_drawing.html">Drawing module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tacoma_interactive.html">Interactive module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Data I/O module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tacoma_model_conversions.html">Models conversion module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tacoma_flockwork.html">Flockwork module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tacoma_load_model_parameters.html">Loading model parameters module</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">tacoma</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Data I/O module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/reference/tacoma_data_io.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-tacoma.data_io">
+<span id="data-i-o-module"></span><h1>Data I/O module<a class="headerlink" href="#module-tacoma.data_io" title="Permalink to this headline">¶</a></h1>
+<p>This module provides routines to load and write temporal networks to the taco fileformat.</p>
+<dl class="function">
+<dt id="tacoma.data_io.download_and_convert_sociopatterns_high_school_2013">
+<code class="descclassname">tacoma.data_io.</code><code class="descname">download_and_convert_sociopatterns_high_school_2013</code><span class="sig-paren">(</span><em>url='http://www.sociopatterns.org/wp-content/uploads/2015/07/High-School_data_2013.csv.gz'</em>, <em>filename='~/.tacoma/hs13.taco'</em><span class="sig-paren">)</span><a class="headerlink" href="#tacoma.data_io.download_and_convert_sociopatterns_high_school_2013" title="Permalink to this definition">¶</a></dt>
+<dd><p>Download the SocioPatterns ‘High school 2013 dynamic contact network’ data,
+extract it and save it as taco. This data is actually binned in intervals
+of <cite>[t-20s, t]</cite>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>url</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – The url from which the tsv-data should be retrieved</li>
+<li><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – this is the path where the taco will be saved to. default : “~/.tacoma/hs13.taco”</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>edge_lists</strong> – The temporal network of the ‘High school 2013 dynamic contact network’.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><code class="xref py py-mod docutils literal notranslate"><span class="pre">edge_lists</span></code></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>If you use this data, please cite</p>
+<dl class="docutils">
+<dt>::</dt>
+<dd>R. Mastrandrea, J. Fournet, A. Barrat,
+Contact patterns in a high school: a comparison between data collected using wearable sensors, contact diaries and friendship surveys.
+PLoS ONE 10(9): e0136497 (2015)</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="tacoma.data_io.download_and_convert_sociopatterns_hypertext_2009">
+<code class="descclassname">tacoma.data_io.</code><code class="descname">download_and_convert_sociopatterns_hypertext_2009</code><span class="sig-paren">(</span><em>url='http://www.sociopatterns.org/files/datasets/003/ht09_contact_list.dat.gz'</em>, <em>filename='~/.tacoma/ht09.taco'</em><span class="sig-paren">)</span><a class="headerlink" href="#tacoma.data_io.download_and_convert_sociopatterns_hypertext_2009" title="Permalink to this definition">¶</a></dt>
+<dd><p>Download the SocioPatterns ‘Hypertext 2009 dynamic contact network’ data,
+extract it and save it as taco. This data is actually binned in intervals
+of <cite>[t-20s, t]</cite>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>url</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – The url from which the tsv-data should be retrieved</li>
+<li><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – this is the path where the taco will be saved to. default : “~/.tacoma/ht09.taco”</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>edge_lists</strong> – The temporal network of the ‘Hypertext 2009 dynamic contact network’.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><code class="xref py py-mod docutils literal notranslate"><span class="pre">edge_lists</span></code></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>If you use this data, please cite</p>
+<dl class="docutils">
+<dt>::</dt>
+<dd>L. Isella et al.,  What’s in a crowd? Analysis of face-to-face behavioral networks,
+Journal of Theoretical Biology 271, 166 (2011).</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="tacoma.data_io.load_fwP_args">
+<code class="descclassname">tacoma.data_io.</code><code class="descname">load_fwP_args</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="headerlink" href="#tacoma.data_io.load_fwP_args" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load Flockwork-P arguments from a json-file</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="tacoma.data_io.load_json_taco">
+<code class="descclassname">tacoma.data_io.</code><code class="descname">load_json_taco</code><span class="sig-paren">(</span><em>fp</em><span class="sig-paren">)</span><a class="headerlink" href="#tacoma.data_io.load_json_taco" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads a temporal network from a .taco-file (which is actually in json format).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>fp</strong> (file-like or <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – read from this file</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">type as given in the .taco-file</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">temporal network</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="tacoma.data_io.load_sociopatterns_high_school_2013">
+<code class="descclassname">tacoma.data_io.</code><code class="descname">load_sociopatterns_high_school_2013</code><span class="sig-paren">(</span><em>filename='~/.tacoma/hs13.taco'</em><span class="sig-paren">)</span><a class="headerlink" href="#tacoma.data_io.load_sociopatterns_high_school_2013" title="Permalink to this definition">¶</a></dt>
+<dd><p>Once <code class="xref py py-func docutils literal notranslate"><span class="pre">tacoma.data_io.download_sociopatterns_high_school_2013()</span></code> was called,
+use this function to retrieve an <code class="xref py py-mod docutils literal notranslate"><span class="pre">edge_lists</span></code> instance
+of the conference data set ‘High school 2013 dynamic contact network’
+(from the SocioPatterns project).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – this is the path where the taco was saved to. default : “~/.tacoma/hs13.taco”</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>edge_lists</strong> – The temporal network of the ‘High school 2013 dynamic contact network’.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><code class="xref py py-mod docutils literal notranslate"><span class="pre">edge_lists</span></code></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>If you use this data, please cite</p>
+<dl class="docutils">
+<dt>::</dt>
+<dd>R. Mastrandrea, J. Fournet, A. Barrat,
+Contact patterns in a high school: a comparison between data collected using wearable sensors, contact diaries and friendship surveys.
+PLoS ONE 10(9): e0136497 (2015)</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="tacoma.data_io.load_sociopatterns_hypertext_2009">
+<code class="descclassname">tacoma.data_io.</code><code class="descname">load_sociopatterns_hypertext_2009</code><span class="sig-paren">(</span><em>filename='~/.tacoma/ht09.taco'</em><span class="sig-paren">)</span><a class="headerlink" href="#tacoma.data_io.load_sociopatterns_hypertext_2009" title="Permalink to this definition">¶</a></dt>
+<dd><p>Once <code class="xref py py-func docutils literal notranslate"><span class="pre">tacoma.data_io.download_sociopatterns_hypertext_2009()</span></code> was called,
+use this function to retrieve an <code class="xref py py-mod docutils literal notranslate"><span class="pre">edge_lists</span></code> instance
+of the conference data set ‘Hypertext 2009 dynamic contact network’
+(from the SocioPatterns project).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – this is the path where the taco was saved to. default : “~/.tacoma/ht09.taco”</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul>
+<li><strong>edge_lists</strong> (<code class="xref py py-mod docutils literal notranslate"><span class="pre">edge_lists</span></code>) – The temporal network of the ‘Hypertext 2009 dynamic contact network’.</li>
+<li><em>If you use this data, please cite</em></li>
+<li><em>::</em> –<p>L. Isella et al.,  What’s in a crowd? Analysis of face-to-face behavioral networks,
+Journal of Theoretical Biology 271, 166 (2011).</p>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="tacoma.data_io.mkdirp_customdir">
+<code class="descclassname">tacoma.data_io.</code><code class="descname">mkdirp_customdir</code><span class="sig-paren">(</span><em>directory='~/.tacoma/'</em><span class="sig-paren">)</span><a class="headerlink" href="#tacoma.data_io.mkdirp_customdir" title="Permalink to this definition">¶</a></dt>
+<dd><p>simulate <cite>mkdir -p</cite> functionality</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="tacoma.data_io.read_json_taco">
+<code class="descclassname">tacoma.data_io.</code><code class="descname">read_json_taco</code><span class="sig-paren">(</span><em>fp</em><span class="sig-paren">)</span><a class="headerlink" href="#tacoma.data_io.read_json_taco" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads a temporal network from a .taco-file (which is actually in json format)
+by simply calling <code class="xref py py-mod docutils literal notranslate"><span class="pre">load_json_taco</span></code> because I’m too stupid to remember
+if it’s actually ‘read’ or ‘load’ smh.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>fp</strong> (file-like or <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – read from this file</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>temporal_network</strong> – type as given in the .taco-file</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><cite>edge_lists</cite> or <cite>edge_changes</cite></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="tacoma.data_io.write_edge_trajectory_coordinates">
+<code class="descclassname">tacoma.data_io.</code><code class="descname">write_edge_trajectory_coordinates</code><span class="sig-paren">(</span><em>temporal_network</em>, <em>filename</em>, <em>filter_for_duration=0.0</em><span class="sig-paren">)</span><a class="headerlink" href="#tacoma.data_io.write_edge_trajectory_coordinates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write the coordinates of the edge activation periods to a json-file
+such that each entry corresponds to a line to be drawn.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>temporal_network</strong> (<code class="xref py py-mod docutils literal notranslate"><span class="pre">edge_changes</span></code>, <code class="xref py py-mod docutils literal notranslate"><span class="pre">edge_lists</span></code>, <code class="xref py py-mod docutils literal notranslate"><span class="pre">edge_changes_with_histograms</span></code>, or <code class="xref py py-mod docutils literal notranslate"><span class="pre">edge_lists_with_histograms</span></code>) – An instance of a temporal network.</li>
+<li><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Write to this file.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="tacoma.data_io.write_fwP_args">
+<code class="descclassname">tacoma.data_io.</code><code class="descname">write_fwP_args</code><span class="sig-paren">(</span><em>args</em>, <em>filename</em><span class="sig-paren">)</span><a class="headerlink" href="#tacoma.data_io.write_fwP_args" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dump Flockwork-P arguments to a json-file</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="tacoma.data_io.write_json_taco">
+<code class="descclassname">tacoma.data_io.</code><code class="descname">write_json_taco</code><span class="sig-paren">(</span><em>temporal_network</em>, <em>fp</em><span class="sig-paren">)</span><a class="headerlink" href="#tacoma.data_io.write_json_taco" title="Permalink to this definition">¶</a></dt>
+<dd><p>Writes a temporal network to a .taco-file (which is actually in json format).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>temporal_network</strong> (<code class="xref py py-mod docutils literal notranslate"><span class="pre">edge_changes</span></code>, <code class="xref py py-mod docutils literal notranslate"><span class="pre">edge_lists</span></code>, <code class="xref py py-mod docutils literal notranslate"><span class="pre">edge_changes_with_histograms</span></code>, or <code class="xref py py-mod docutils literal notranslate"><span class="pre">edge_lists_with_histograms</span></code>) – An instance of a temporal network.</li>
+<li><strong>fp</strong> (file-like or <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – write to this file</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="tacoma_model_conversions.html" class="btn btn-neutral float-right" title="Models conversion module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="tacoma_interactive.html" class="btn btn-neutral" title="Interactive module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Benjamin F. Maier.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.0.29',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

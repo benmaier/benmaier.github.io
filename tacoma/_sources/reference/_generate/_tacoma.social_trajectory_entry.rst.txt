@@ -1,0 +1,30 @@
+\_tacoma.social\_trajectory\_entry
+==================================
+
+.. currentmodule:: _tacoma
+
+.. autoclass:: social_trajectory_entry
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~social_trajectory_entry.__init__
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~social_trajectory_entry.hash
+      ~social_trajectory_entry.size
+      ~social_trajectory_entry.time_pairs
+   
+   

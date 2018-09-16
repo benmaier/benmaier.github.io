@@ -1,0 +1,560 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Loading model parameters module &mdash; tacoma 0.0.29 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Flockwork module" href="tacoma_flockwork.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> tacoma
+          
+
+          
+            
+            <img src="../_static/new_logo_very_small_2width.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0.29
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About this project</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Temporal networks</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../temporal_networks/temporal_network_classes.html">Temporal network classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../temporal_networks/verification_and_conversion.html">Verification and conversion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../temporal_networks/manipulating_temporal_networks.html">Manipulating temporal networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../temporal_networks/binning_and_sampling.html">Binning and sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../temporal_networks/read_write_and_share.html">Read, write and share</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Visualizations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../visualizations/drawing.html">Drawing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualizations/interactive.html">Interactive</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Structural and temporal analysis</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../structural_and_temporal_analysis/degree.html">Edge counts and degree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../structural_and_temporal_analysis/group_sizes_and_durations.html">Group sizes &amp; durations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../structural_and_temporal_analysis/social_trajectories.html">Social trajectories</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Epidemic Spreading</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../epidemic_spreading/gillespie.html">Dynamic Gillespie SSA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../epidemic_spreading/epidemic_classes.html">Epidemic classes</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Modeling</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modeling/flockworks.html">Flockworks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling/activity_model.html">Edge activity model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling/dynamic_rgg.html">Dynamic RGGs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling/zsbb.html">ZSSB model</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="cpp_core.html">Relevant C++-core classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tacoma_api.html">API module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tacoma_analysis.html">Analysis module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tacoma_tools.html">Tools module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tacoma_drawing.html">Drawing module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tacoma_interactive.html">Interactive module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tacoma_data_io.html">Data I/O module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tacoma_model_conversions.html">Models conversion module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tacoma_flockwork.html">Flockwork module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Loading model parameters module</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">tacoma</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Loading model parameters module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/reference/tacoma_load_model_parameters.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-tacoma.load_model_parameters">
+<span id="loading-model-parameters-module"></span><h1>Loading model parameters module<a class="headerlink" href="#module-tacoma.load_model_parameters" title="Permalink to this headline">¶</a></h1>
+<p>This module provides an API to load parameters for the model functions
+in order to produce surrogate networks that have statistics similar to
+the original temporal networks SocioPatterns HT09 and one week of DTU
+data.</p>
+<dl class="function">
+<dt id="tacoma.load_model_parameters.load_dtu_ZSBB_params">
+<code class="descclassname">tacoma.load_model_parameters.</code><code class="descname">load_dtu_ZSBB_params</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tacoma.load_model_parameters.load_dtu_ZSBB_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the standard parameters to generate surrogate networks
+for one week of DTU data using the ZSBB model.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The <cite>kwargs</cite> to pass to <code class="xref py py-func docutils literal notranslate"><span class="pre">tacoma.ZSBB_model()</span></code>.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="tacoma.load_model_parameters.load_dtu_dyn_RGG_params">
+<code class="descclassname">tacoma.load_model_parameters.</code><code class="descname">load_dtu_dyn_RGG_params</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tacoma.load_model_parameters.load_dtu_dyn_RGG_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the standard parameters to generate surrogate networks
+for one week of DTU data using the dynamic RGG model.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The <cite>kwargs</cite> to pass to <code class="xref py py-func docutils literal notranslate"><span class="pre">tacoma.dynamic_RGG()</span></code>.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="tacoma.load_model_parameters.load_dtu_flockwork_params">
+<code class="descclassname">tacoma.load_model_parameters.</code><code class="descname">load_dtu_flockwork_params</code><span class="sig-paren">(</span><em>scaled=False</em><span class="sig-paren">)</span><a class="headerlink" href="#tacoma.load_model_parameters.load_dtu_flockwork_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the standard parameters to generate surrogate networks
+for one week of DTU data using the Flockwork-P model with varying rates.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>scaled</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>optional</em>) – If this is <cite>True</cite>, load the rewiring rate <cite>gamma(t)</cite> and proba-
+bility to reconnect <cite>P(t)</cite> rescaled with a corrective factor.
+This factor emerges because in the original network the mean degree
+is overestimated due to binning of edges. This overestimation
+typically leads to an underestimation of <cite>gamma(t)</cite> and an
+overestimation of <cite>P(t)</cite>.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The <cite>kwargs</cite> to pass to <code class="xref py py-func docutils literal notranslate"><span class="pre">tacoma.flockwork_P_varying_rates()</span></code>.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="tacoma.load_model_parameters.load_dtu_flockwork_scaled_params">
+<code class="descclassname">tacoma.load_model_parameters.</code><code class="descname">load_dtu_flockwork_scaled_params</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tacoma.load_model_parameters.load_dtu_flockwork_scaled_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the standard parameters to generate surrogate networks
+for one week of DTU data using the Flockwork-P model with varying rates,
+corrected for overestimation of the mean degree in the original data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The <cite>kwargs</cite> to pass to <code class="xref py py-func docutils literal notranslate"><span class="pre">tacoma.flockwork_P_varying_rates()</span></code>.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="tacoma.load_model_parameters.load_dtu_flockwork_unscaled_params">
+<code class="descclassname">tacoma.load_model_parameters.</code><code class="descname">load_dtu_flockwork_unscaled_params</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tacoma.load_model_parameters.load_dtu_flockwork_unscaled_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the standard parameters to generate surrogate networks
+for one week of DTU data using the Flockwork-P model with varying rates,
+not corrected for overestimation of the mean degree in the original data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The <cite>kwargs</cite> to pass to <code class="xref py py-func docutils literal notranslate"><span class="pre">tacoma.flockwork_P_varying_rates()</span></code>.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="tacoma.load_model_parameters.load_hs13_ZSBB_params">
+<code class="descclassname">tacoma.load_model_parameters.</code><code class="descname">load_hs13_ZSBB_params</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tacoma.load_model_parameters.load_hs13_ZSBB_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the standard parameters to generate SocioPatterns HS13
+surrogate networks using the ZSBB model.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The <cite>kwargs</cite> to pass to <code class="xref py py-func docutils literal notranslate"><span class="pre">tacoma.ZSBB_model()</span></code>.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="tacoma.load_model_parameters.load_hs13_dyn_RGG_params">
+<code class="descclassname">tacoma.load_model_parameters.</code><code class="descname">load_hs13_dyn_RGG_params</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tacoma.load_model_parameters.load_hs13_dyn_RGG_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the standard parameters to generate SocioPatterns HS13
+surrogate networks using the dynamic RGG model.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The <cite>kwargs</cite> to pass to <code class="xref py py-func docutils literal notranslate"><span class="pre">tacoma.dynamic_RGG()</span></code>.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="tacoma.load_model_parameters.load_hs13_flockwork_params">
+<code class="descclassname">tacoma.load_model_parameters.</code><code class="descname">load_hs13_flockwork_params</code><span class="sig-paren">(</span><em>scaled=False</em><span class="sig-paren">)</span><a class="headerlink" href="#tacoma.load_model_parameters.load_hs13_flockwork_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the standard parameters to generate SocioPatterns HS13
+surrogate networks using the Flockwork-P model with varying rates.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>scaled</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>optional</em>) – If this is <cite>True</cite>, load the rewiring rate <cite>gamma(t)</cite> and proba-
+bility to reconnect <cite>P(t)</cite> rescaled with a corrective factor.
+This factor emerges because in the original network the mean degree
+is overestimated due to binning of edges. This overestimation
+typically leads to an underestimation of <cite>gamma(t)</cite> and an
+overestimation of <cite>P(t)</cite>.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The <cite>kwargs</cite> to pass to <code class="xref py py-func docutils literal notranslate"><span class="pre">tacoma.flockwork_P_varying_rates()</span></code>.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="tacoma.load_model_parameters.load_hs13_flockwork_scaled_params">
+<code class="descclassname">tacoma.load_model_parameters.</code><code class="descname">load_hs13_flockwork_scaled_params</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tacoma.load_model_parameters.load_hs13_flockwork_scaled_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the standard parameters to generate SocioPatterns HS13
+surrogate networks using the Flockwork-P model with varying rates,
+corrected for overestimation of the mean degree in the original data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The <cite>kwargs</cite> to pass to <code class="xref py py-func docutils literal notranslate"><span class="pre">tacoma.flockwork_P_varying_rates()</span></code>.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="tacoma.load_model_parameters.load_hs13_flockwork_unscaled_params">
+<code class="descclassname">tacoma.load_model_parameters.</code><code class="descname">load_hs13_flockwork_unscaled_params</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tacoma.load_model_parameters.load_hs13_flockwork_unscaled_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the standard parameters to generate SocioPatterns HS13
+surrogate networks using the Flockwork-P model with varying rates,
+not corrected for overestimation of the mean degree in the original
+data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The <cite>kwargs</cite> to pass to <code class="xref py py-func docutils literal notranslate"><span class="pre">tacoma.flockwork_P_varying_rates()</span></code>.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="tacoma.load_model_parameters.load_ht09_ZSBB_params">
+<code class="descclassname">tacoma.load_model_parameters.</code><code class="descname">load_ht09_ZSBB_params</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tacoma.load_model_parameters.load_ht09_ZSBB_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the standard parameters to generate SocioPatterns HT09
+surrogate networks using the ZSBB model.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The <cite>kwargs</cite> to pass to <code class="xref py py-func docutils literal notranslate"><span class="pre">tacoma.ZSBB_model()</span></code>.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="tacoma.load_model_parameters.load_ht09_dyn_RGG_params">
+<code class="descclassname">tacoma.load_model_parameters.</code><code class="descname">load_ht09_dyn_RGG_params</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tacoma.load_model_parameters.load_ht09_dyn_RGG_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the standard parameters to generate SocioPatterns HT09
+surrogate networks using the dynamic RGG model.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The <cite>kwargs</cite> to pass to <code class="xref py py-func docutils literal notranslate"><span class="pre">tacoma.dynamic_RGG()</span></code>.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="tacoma.load_model_parameters.load_ht09_flockwork_params">
+<code class="descclassname">tacoma.load_model_parameters.</code><code class="descname">load_ht09_flockwork_params</code><span class="sig-paren">(</span><em>scaled=False</em><span class="sig-paren">)</span><a class="headerlink" href="#tacoma.load_model_parameters.load_ht09_flockwork_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the standard parameters to generate SocioPatterns HT09
+surrogate networks using the Flockwork-P model with varying rates.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>scaled</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>optional</em>) – If this is <cite>True</cite>, load the rewiring rate <cite>gamma(t)</cite> and proba-
+bility to reconnect <cite>P(t)</cite> rescaled with a corrective factor.
+This factor emerges because in the original network the mean degree
+is overestimated due to binning of edges. This overestimation
+typically leads to an underestimation of <cite>gamma(t)</cite> and an
+overestimation of <cite>P(t)</cite>.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The <cite>kwargs</cite> to pass to <code class="xref py py-func docutils literal notranslate"><span class="pre">tacoma.flockwork_P_varying_rates()</span></code>.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="tacoma.load_model_parameters.load_ht09_flockwork_scaled_params">
+<code class="descclassname">tacoma.load_model_parameters.</code><code class="descname">load_ht09_flockwork_scaled_params</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tacoma.load_model_parameters.load_ht09_flockwork_scaled_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the standard parameters to generate SocioPatterns HT09
+surrogate networks using the Flockwork-P model with varying rates,
+corrected for overestimation of the mean degree in the original data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The <cite>kwargs</cite> to pass to <code class="xref py py-func docutils literal notranslate"><span class="pre">tacoma.flockwork_P_varying_rates()</span></code>.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="tacoma.load_model_parameters.load_ht09_flockwork_unscaled_params">
+<code class="descclassname">tacoma.load_model_parameters.</code><code class="descname">load_ht09_flockwork_unscaled_params</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tacoma.load_model_parameters.load_ht09_flockwork_unscaled_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the standard parameters to generate SocioPatterns HT09
+surrogate networks using the Flockwork-P model with varying rates,
+not corrected for overestimation of the mean degree in the original
+data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The <cite>kwargs</cite> to pass to <code class="xref py py-func docutils literal notranslate"><span class="pre">tacoma.flockwork_P_varying_rates()</span></code>.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="tacoma_flockwork.html" class="btn btn-neutral" title="Flockwork module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Benjamin F. Maier.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.0.29',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

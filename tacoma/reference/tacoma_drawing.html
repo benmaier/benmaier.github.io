@@ -1,0 +1,405 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Drawing module &mdash; tacoma 0.0.29 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Interactive module" href="tacoma_interactive.html" />
+    <link rel="prev" title="Tools module" href="tacoma_tools.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> tacoma
+          
+
+          
+            
+            <img src="../_static/new_logo_very_small_2width.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0.29
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About this project</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Temporal networks</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../temporal_networks/temporal_network_classes.html">Temporal network classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../temporal_networks/verification_and_conversion.html">Verification and conversion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../temporal_networks/manipulating_temporal_networks.html">Manipulating temporal networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../temporal_networks/binning_and_sampling.html">Binning and sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../temporal_networks/read_write_and_share.html">Read, write and share</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Visualizations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../visualizations/drawing.html">Drawing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualizations/interactive.html">Interactive</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Structural and temporal analysis</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../structural_and_temporal_analysis/degree.html">Edge counts and degree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../structural_and_temporal_analysis/group_sizes_and_durations.html">Group sizes &amp; durations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../structural_and_temporal_analysis/social_trajectories.html">Social trajectories</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Epidemic Spreading</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../epidemic_spreading/gillespie.html">Dynamic Gillespie SSA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../epidemic_spreading/epidemic_classes.html">Epidemic classes</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Modeling</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modeling/flockworks.html">Flockworks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling/activity_model.html">Edge activity model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling/dynamic_rgg.html">Dynamic RGGs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling/zsbb.html">ZSSB model</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="cpp_core.html">Relevant C++-core classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tacoma_api.html">API module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tacoma_analysis.html">Analysis module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tacoma_tools.html">Tools module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Drawing module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tacoma_interactive.html">Interactive module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tacoma_data_io.html">Data I/O module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tacoma_model_conversions.html">Models conversion module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tacoma_flockwork.html">Flockwork module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tacoma_load_model_parameters.html">Loading model parameters module</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">tacoma</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Drawing module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/reference/tacoma_drawing.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-tacoma.drawing">
+<span id="drawing-module"></span><h1>Drawing module<a class="headerlink" href="#module-tacoma.drawing" title="Permalink to this headline">¶</a></h1>
+<p>This module contains functions for drawing temporal networks
+in different ways. It depends on three packages not being installed
+during installation with <code class="docutils literal notranslate"><span class="pre">pip</span></code>, which are</p>
+<ul class="simple">
+<li>matplotlib</li>
+<li>networkx</li>
+<li>python-louvain</li>
+</ul>
+<p>If you want to use this module, please install the dependencies
+listed above.</p>
+<dl class="function">
+<dt id="tacoma.drawing.draw_edge_lists">
+<code class="descclassname">tacoma.drawing.</code><code class="descname">draw_edge_lists</code><span class="sig-paren">(</span><em>L</em><span class="sig-paren">)</span><a class="headerlink" href="#tacoma.drawing.draw_edge_lists" title="Permalink to this definition">¶</a></dt>
+<dd><p>This draws a force-directed layout for each snapshot of a temporal network given in <a class="reference internal" href="_generate/_tacoma.edge_lists.html#_tacoma.edge_lists" title="_tacoma.edge_lists"><code class="xref py py-mod docutils literal notranslate"><span class="pre">_tacoma.edge_lists</span></code></a> format and hence should be used with caution.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="tacoma.drawing.draw_edges">
+<code class="descclassname">tacoma.drawing.</code><code class="descname">draw_edges</code><span class="sig-paren">(</span><em>traj</em>, <em>time_normalization_factor=1.0</em>, <em>time_unit=None</em>, <em>ax=None</em>, <em>fit=False</em>, <em>edge_order=None</em>, <em>color=None</em>, <em>intervals_to_discard_for_fit=[]</em>, <em>fit_color='k'</em>, <em>return_fit_params=False</em><span class="sig-paren">)</span><a class="headerlink" href="#tacoma.drawing.draw_edges" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draw edges according to an edge activity plot.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>traj</strong> (list of <a class="reference internal" href="_generate/_tacoma.edge_trajectory_entry.html#_tacoma.edge_trajectory_entry" title="_tacoma.edge_trajectory_entry"><code class="xref py py-class docutils literal notranslate"><span class="pre">_tacoma.edge_trajectory_entry</span></code></a>) – The result of <a class="reference internal" href="tacoma_api.html#tacoma.api.get_edge_trajectories" title="tacoma.api.get_edge_trajectories"><code class="xref py py-func docutils literal notranslate"><span class="pre">tacoma.api.get_edge_trajectories()</span></code></a>.</li>
+<li><strong>float</strong><strong>, </strong><strong>default</strong> (<em>time_normalization_factor</em><em>,</em>) – Rescale time by this factor.</li>
+<li><strong>time_unit</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>default : None</em>) – Unit of time to put on the axis.</li>
+<li><strong>ax</strong> (<em>matplotlib.Axes</em><em>, </em><em>default : None</em>) – Axis to draw an, will create new one if none provided.</li>
+<li><strong>fit</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default : False</em>) – Fit a curve to the number of uniquely observed edges.</li>
+<li><strong>edge_order</strong> (<em>list of int</em><em>, </em><em>default : None</em>) – Reorder the edges according to this list before drawing.</li>
+<li><strong>color</strong> (<em>a matplotlib color</em><em>, </em><em>default : None</em>) – Color in which to draw the edges in</li>
+<li><strong>intervals_to_discard_for_fit</strong> (<em>list of tuple of float</em>) – a list of time intervals which have to be discarded for the fit</li>
+<li><strong>fit_color</strong> (<em>a matplotlib color</em><em>, </em><em>default : 'k'</em>) – color in which to draw the fit in</li>
+<li><strong>return_fit_params</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default : False</em>) – Switch this on if you want to obtain the fit parameters.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>fig</strong> (<em>matplotlib.Figure</em>) – If an axes was provided, this is <cite>None</cite>.</li>
+<li><strong>ax</strong> (<em>matplotlib.Axes</em>) – The axes the plot was drawn on.</li>
+<li><strong>popt</strong> (<em>tuple of float</em>) – Fit parameters, will only be returned if return_fit_params is <cite>True</cite>.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="tacoma.drawing.edge_activity_plot">
+<code class="descclassname">tacoma.drawing.</code><code class="descname">edge_activity_plot</code><span class="sig-paren">(</span><em>temporal_network</em>, <em>time_normalization_factor=1.0</em>, <em>time_unit=None</em>, <em>ax=None</em>, <em>fit=False</em>, <em>edge_order=None</em>, <em>color=None</em>, <em>intervals_to_discard_for_fit=[]</em>, <em>fit_color=None</em>, <em>return_fit_params=False</em><span class="sig-paren">)</span><a class="headerlink" href="#tacoma.drawing.edge_activity_plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draw an edge activity plot for the given temporal network.
+This is a wrapper for <a class="reference internal" href="#tacoma.drawing.draw_edges" title="tacoma.drawing.draw_edges"><code class="xref py py-func docutils literal notranslate"><span class="pre">tacoma.drawing.draw_edges()</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>temporal_network</strong> (<a class="reference internal" href="_generate/_tacoma.edge_lists.html#_tacoma.edge_lists" title="_tacoma.edge_lists"><code class="xref py py-class docutils literal notranslate"><span class="pre">_tacoma.edge_lists</span></code></a> or <a class="reference internal" href="_generate/_tacoma.edge_changes.html#_tacoma.edge_changes" title="_tacoma.edge_changes"><code class="xref py py-class docutils literal notranslate"><span class="pre">_tacoma.edge_changes</span></code></a>.) – A temporal network.</li>
+<li><strong>float</strong><strong>, </strong><strong>default</strong> (<em>time_normalization_factor</em><em>,</em>) – Rescale time by this factor.</li>
+<li><strong>time_unit</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>default : None</em>) – Unit of time to put on the axis.</li>
+<li><strong>ax</strong> (<em>matplotlib.Axes</em><em>, </em><em>default : None</em>) – Axis to draw an, will create new one if none provided.</li>
+<li><strong>fit</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default : False</em>) – Fit a curve to the number of uniquely observed edges.</li>
+<li><strong>edge_order</strong> (<em>list of int</em><em>, </em><em>default : None</em>) – Reorder the edges according to this list before drawing.</li>
+<li><strong>color</strong> (<em>a matplotlib color</em><em>, </em><em>default : None</em>) – Color in which to draw the edges in</li>
+<li><strong>intervals_to_discard_for_fit</strong> (<em>list of tuple of float</em>) – a list of time intervals which have to be discarded for the fit</li>
+<li><strong>fit_color</strong> (<em>a matplotlib color</em><em>, </em><em>default : 'k'</em>) – color in which to draw the fit in</li>
+<li><strong>return_fit_params</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default : False</em>) – Switch this on if you want to obtain the fit parameters.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>fig</strong> (<em>matplotlib.Figure</em>) – If an axes was provided, this is <cite>None</cite>.</li>
+<li><strong>ax</strong> (<em>matplotlib.Axes</em>) – The axes the plot was drawn on.</li>
+<li><strong>popt</strong> (<em>tuple of float</em>) – Fit parameters, will only be returned if <cite>return_fit_params</cite> is <cite>True</cite>.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="tacoma.drawing.fit_function">
+<code class="descclassname">tacoma.drawing.</code><code class="descname">fit_function</code><span class="sig-paren">(</span><em>x</em>, <em>alpha</em>, <em>scale</em>, <em>fac</em>, <em>intervals_to_discard_for_fit</em><span class="sig-paren">)</span><a class="headerlink" href="#tacoma.drawing.fit_function" title="Permalink to this definition">¶</a></dt>
+<dd><p>A fit function for the number of uniquely observed edges over
+time, following the assumption that edge activity rates follow a gamma
+distribution.</p>
+<div class="math notranslate nohighlight">
+\[f(x) = \frac{\lambda^\alpha}{\Gamma(\lambda)} x^{\alpha-1}\exp(-\lambda x)\]</div>
+<p>The fit function is</p>
+<div class="math notranslate nohighlight">
+\[y(x) = \phi\times \left[ 1 - \left(\frac{\lambda}{\lambda+x}\right)^\alpha\right]\]</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>x</strong> (<em>numpy.ndarray</em>) – Data on the x-axis, typically time</li>
+<li><strong>alpha</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – exponent in gamma distribution, has to be alpha &gt; 0</li>
+<li><strong>scale</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – scale <span class="math notranslate nohighlight">\(\lambda\)</span> in gamma distribution, has to be scale &gt; 0</li>
+<li><strong>fac</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – prefactor, typically <span class="math notranslate nohighlight">\(\phi=N(N-1)/2\)</span>.</li>
+<li><strong>intervals_to_discard_for_fit</strong> (<em>list of tuple of float</em>) – a list of time intervals which have to be discarded for the fit</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>y</strong> – value of the function</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">numpy.ndarray</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="tacoma.drawing.get_edge_graph">
+<code class="descclassname">tacoma.drawing.</code><code class="descname">get_edge_graph</code><span class="sig-paren">(</span><em>edge_traj</em>, <em>edge_sim</em>, <em>threshold=0.0</em><span class="sig-paren">)</span><a class="headerlink" href="#tacoma.drawing.get_edge_graph" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="tacoma.drawing.get_edge_order">
+<code class="descclassname">tacoma.drawing.</code><code class="descname">get_edge_order</code><span class="sig-paren">(</span><em>edge_traj</em>, <em>edge_sim</em>, <em>threshold=0.0</em><span class="sig-paren">)</span><a class="headerlink" href="#tacoma.drawing.get_edge_order" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an edge order by</p>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="tacoma_interactive.html" class="btn btn-neutral float-right" title="Interactive module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="tacoma_tools.html" class="btn btn-neutral" title="Tools module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Benjamin F. Maier.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.0.29',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
