@@ -1,0 +1,592 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Read, write and share &mdash; tacoma 0.0.29 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Drawing" href="../visualizations/drawing.html" />
+    <link rel="prev" title="Binning and sampling" href="binning_and_sampling.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> tacoma
+          
+
+          
+            
+            <img src="../_static/new_logo_very_small_2width.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0.29
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About this project</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Temporal networks</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="temporal_network_classes.html">Temporal network classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="verification_and_conversion.html">Verification and conversion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manipulating_temporal_networks.html">Manipulating temporal networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="binning_and_sampling.html">Binning and sampling</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Read, write and share</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-status-quo-csv">The status quo — csv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#a-new-format-the-taco">A new format — The taco</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#writing">Writing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reading">Reading</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#converting-csv-to-taco">Converting csv to taco</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#edge-coordinate-files">Edge coordinate files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#loading-existing-data">Loading existing data</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Visualizations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../visualizations/drawing.html">Drawing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualizations/interactive.html">Interactive</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Structural and temporal analysis</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../structural_and_temporal_analysis/degree.html">Edge counts and degree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../structural_and_temporal_analysis/group_sizes_and_durations.html">Group sizes &amp; durations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../structural_and_temporal_analysis/social_trajectories.html">Social trajectories</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Epidemic Spreading</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../epidemic_spreading/gillespie.html">Dynamic Gillespie SSA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../epidemic_spreading/epidemic_classes.html">Epidemic classes</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Modeling</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modeling/flockworks.html">Flockworks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling/activity_model.html">Edge activity model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling/dynamic_rgg.html">Dynamic RGGs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling/zsbb.html">ZSSB model</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../reference/cpp_core.html">Relevant C++-core classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/tacoma_api.html">API module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/tacoma_analysis.html">Analysis module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/tacoma_tools.html">Tools module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/tacoma_drawing.html">Drawing module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/tacoma_interactive.html">Interactive module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/tacoma_data_io.html">Data I/O module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/tacoma_model_conversions.html">Models conversion module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/tacoma_flockwork.html">Flockwork module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/tacoma_load_model_parameters.html">Loading model parameters module</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">tacoma</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Read, write and share</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/temporal_networks/read_write_and_share.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="read-write-and-share">
+<h1>Read, write and share<a class="headerlink" href="#read-write-and-share" title="Permalink to this headline">¶</a></h1>
+<p>Storing and sharing data is obviously rather important. Hence we need a file-format which enables
+us to easily read, write and share the data present in <a class="reference internal" href="../reference/_generate/_tacoma.edge_lists.html#_tacoma.edge_lists" title="_tacoma.edge_lists"><code class="xref py py-class docutils literal notranslate"><span class="pre">_tacoma.edge_lists</span></code></a> and
+<a class="reference internal" href="../reference/_generate/_tacoma.edge_changes.html#_tacoma.edge_changes" title="_tacoma.edge_changes"><code class="xref py py-class docutils literal notranslate"><span class="pre">_tacoma.edge_changes</span></code></a>.</p>
+<div class="section" id="the-status-quo-csv">
+<h2>The status quo — csv<a class="headerlink" href="#the-status-quo-csv" title="Permalink to this headline">¶</a></h2>
+<p>Typically, data is shared in csv-format (or tsv)
+where the first column refers to a discrete time,
+the second column contains a source node and the third column contains a target node,
+such as</p>
+<table border="1" class="docutils" id="id1">
+<caption><span class="caption-text">A csv-example for edge lists</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">time</th>
+<th class="head">source</th>
+<th class="head">target</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>20</td>
+<td>Alice</td>
+<td>Bob</td>
+</tr>
+<tr class="row-odd"><td>20</td>
+<td>Alice</td>
+<td>Clara</td>
+</tr>
+<tr class="row-even"><td>60</td>
+<td>Darren</td>
+<td>Alice</td>
+</tr>
+</tbody>
+</table>
+<p>These formats usually describe edge lists at discrete times.</p>
+<p>For data sets describing edge changes, this format often includes a fourth column
+containing a descriptor for whether the edge was activated or deactivated at
+the corresponding time in the first columns, such as</p>
+<table border="1" class="docutils" id="id2">
+<caption><span class="caption-text">A csv-example for edge changes</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">time</th>
+<th class="head">source</th>
+<th class="head">target</th>
+<th class="head">in or out</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>20</td>
+<td>Alice</td>
+<td>Bob</td>
+<td>in</td>
+</tr>
+<tr class="row-odd"><td>20</td>
+<td>Alice</td>
+<td>Clara</td>
+<td>in</td>
+</tr>
+<tr class="row-even"><td>60</td>
+<td>Alice</td>
+<td>Bob</td>
+<td>out</td>
+</tr>
+<tr class="row-odd"><td>60</td>
+<td>Alice</td>
+<td>Clara</td>
+<td>out</td>
+</tr>
+<tr class="row-even"><td>60</td>
+<td>Darren</td>
+<td>Alice</td>
+<td>in</td>
+</tr>
+</tbody>
+</table>
+<p>The only advantage of these formats is that they’re easily readable by humans.</p>
+<p>The disadvantages are</p>
+<ul class="simple">
+<li>do not contain the total number of nodes</li>
+<li>no description of the data, information about the experiment</li>
+<li>ambiguous dimension of time</li>
+<li>final time of the experiment <span class="math notranslate nohighlight">\(t_\mathrm{max}\)</span> is not given</li>
+<li>ambiguous about the class of the provided data</li>
+</ul>
+</div>
+<div class="section" id="a-new-format-the-taco">
+<h2>A new format — The taco<a class="headerlink" href="#a-new-format-the-taco" title="Permalink to this headline">¶</a></h2>
+<p>The number of cases in which data is opened to be read by a human is significantly
+lower than the number of cases in which it is opened to be read by a machine.
+My personal opinion is therefore that data should be stored in a format easily readible
+by a computer and converted to appropriate formats whenever a human wants to access
+the data directly.</p>
+<p><cite>tacoma</cite> comes with its own data-format called “.taco” which is simply the whole data
+of either a <a class="reference internal" href="../reference/_generate/_tacoma.edge_lists.html#_tacoma.edge_lists" title="_tacoma.edge_lists"><code class="xref py py-class docutils literal notranslate"><span class="pre">_tacoma.edge_lists</span></code></a> or a <a class="reference internal" href="../reference/_generate/_tacoma.edge_changes.html#_tacoma.edge_changes" title="_tacoma.edge_changes"><code class="xref py py-class docutils literal notranslate"><span class="pre">_tacoma.edge_changes</span></code></a> object
+dumped to a JSON
+object and then written to a file. We chose JSON since there exists packages to read
+and write JSON in nearly every programming environment. Furthermore, JSON-strings are
+considerably more light-weight than, e.g. XML-strings.</p>
+<p>Hence, not unlike to a real taco, we dump all the good stuff to a single shell —
+delicious, but
+difficult for human consumption.</p>
+<div class="section" id="writing">
+<h3>Writing<a class="headerlink" href="#writing" title="Permalink to this headline">¶</a></h3>
+<p>In <cite>tacoma</cite>, we can save a temporal network to a <cite>taco</cite> using <a class="reference internal" href="../reference/tacoma_data_io.html#tacoma.data_io.write_json_taco" title="tacoma.data_io.write_json_taco"><code class="xref py py-func docutils literal notranslate"><span class="pre">tacoma.data_io.write_json_taco()</span></code></a>.</p>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tc</span><span class="o">.</span><span class="n">write_json_taco</span><span class="p">(</span><span class="n">temporal_network</span><span class="p">,</span> <span class="s1">&#39;/path/to/temporal_network.taco&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The fields in the written JSON object are the same as they are in the formats defined in
+“<a class="reference internal" href="temporal_network_classes.html#temp-network-classes"><span class="std std-ref">Temporal network classes</span></a>”, besides the additional field <code class="docutils literal notranslate"><span class="pre">'type'</span></code> which can either be <code class="docutils literal notranslate"><span class="pre">'edge_lists'</span></code>
+or <code class="docutils literal notranslate"><span class="pre">'edge_changes'</span></code>.</p>
+<p>Considering the example temporal network given in “<a class="reference internal" href="temporal_network_classes.html#temp-network-classes"><span class="std std-ref">Temporal network classes</span></a>”
+the JSON-string for <a class="reference internal" href="../reference/_generate/_tacoma.edge_lists.html#_tacoma.edge_lists" title="_tacoma.edge_lists"><code class="xref py py-class docutils literal notranslate"><span class="pre">_tacoma.edge_lists</span></code></a> is congruent to</p>
+<div class="code javascript highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;edge_lists&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;t&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">,</span> <span class="mf">7.31</span><span class="p">],</span>
+  <span class="s1">&#39;tmax&#39;</span><span class="p">:</span> <span class="mf">8.1</span><span class="p">,</span>
+  <span class="s1">&#39;N&#39;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
+  <span class="s1">&#39;edges&#39;</span><span class="p">:</span> <span class="p">[</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">]],</span>
+             <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span>
+             <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">]],</span>
+             <span class="p">[[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">]],</span>
+             <span class="p">[[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">]],</span>
+             <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">]],</span>
+             <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span>
+           <span class="p">],</span>
+  <span class="s1">&#39;int_to_node&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;0&#39;</span><span class="p">:</span> <span class="s1">&#39;Alice&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;1&#39;</span><span class="p">:</span> <span class="s1">&#39;Bob&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;2&#39;</span><span class="p">:</span> <span class="s1">&#39;Clara&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;3&#39;</span><span class="p">:</span> <span class="s1">&#39;Darren&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;4&#39;</span><span class="p">:</span> <span class="s1">&#39;Elle&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;5&#39;</span><span class="p">:</span> <span class="s1">&#39;Felicitas&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;6&#39;</span><span class="p">:</span> <span class="s1">&#39;George&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;7&#39;</span><span class="p">:</span> <span class="s1">&#39;Harriett&#39;</span>
+        <span class="p">},</span>
+  <span class="s1">&#39;notes&#39;</span><span class="p">:</span> <span class="s1">&#39;This experiment was conducted as a test.&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;time_unit&#39;</span><span class="p">:</span> <span class="s1">&#39;s&#39;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The actual data is, however, minified and looks more like</p>
+<div class="code javascript highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;edge_lists&quot;</span><span class="p">,</span><span class="s2">&quot;t&quot;</span><span class="p">:[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.5</span><span class="p">,</span><span class="mf">3.0</span><span class="p">,</span><span class="mf">4.0</span><span class="p">,</span><span class="mf">7.0</span><span class="p">,</span><span class="mf">7.31</span><span class="p">],</span><span class="s2">&quot;tmax&quot;</span><span class="p">:</span><span class="mf">8.1</span><span class="p">,</span><span class="s2">&quot;N&quot;</span><span class="p">:</span><span class="mi">8</span><span class="p">,</span><span class="s2">&quot;edges&quot;</span><span class="p">:[[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">7</span><span class="p">]],[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]],[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">7</span><span class="p">]],[[</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">7</span><span class="p">]],[[</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">]],[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">]],[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]]],</span><span class="s2">&quot;int_to_node&quot;</span><span class="p">:{</span><span class="s2">&quot;0&quot;</span><span class="p">:</span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span><span class="s2">&quot;1&quot;</span><span class="p">:</span><span class="s2">&quot;Bob&quot;</span><span class="p">,</span><span class="s2">&quot;2&quot;</span><span class="p">:</span><span class="s2">&quot;Clara&quot;</span><span class="p">,</span><span class="s2">&quot;3&quot;</span><span class="p">:</span><span class="s2">&quot;Darren&quot;</span><span class="p">,</span><span class="s2">&quot;4&quot;</span><span class="p">:</span><span class="s2">&quot;Elle&quot;</span><span class="p">,</span><span class="s2">&quot;5&quot;</span><span class="p">:</span><span class="s2">&quot;Felicitas&quot;</span><span class="p">,</span><span class="s2">&quot;6&quot;</span><span class="p">:</span><span class="s2">&quot;George&quot;</span><span class="p">,</span><span class="s2">&quot;7&quot;</span><span class="p">:</span><span class="s2">&quot;Harriett&quot;</span><span class="p">},</span><span class="s2">&quot;notes&quot;</span><span class="p">:</span><span class="s2">&quot;This experiment was conducted as a test.&quot;</span><span class="p">,</span><span class="s2">&quot;time_unit&quot;</span><span class="p">:</span><span class="s2">&quot;s&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>For <a class="reference internal" href="../reference/_generate/_tacoma.edge_changes.html#_tacoma.edge_changes" title="_tacoma.edge_changes"><code class="xref py py-class docutils literal notranslate"><span class="pre">_tacoma.edge_changes</span></code></a> it would look like</p>
+<div class="code javascript highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;edge_changes&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;t&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">,</span> <span class="mf">7.31</span><span class="p">],</span>
+  <span class="s1">&#39;t0&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+  <span class="s1">&#39;tmax&#39;</span><span class="p">:</span> <span class="mf">8.1</span><span class="p">,</span>
+  <span class="s1">&#39;N&#39;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
+  <span class="s1">&#39;edges_initial&#39;</span><span class="p">:</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">]],</span>
+  <span class="s1">&#39;edges_in&#39;</span><span class="p">:</span> <span class="p">[[],</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">]],</span> <span class="p">[[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">]],</span> <span class="p">[],</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span> <span class="p">[]],</span>
+  <span class="s1">&#39;edges_out&#39;</span><span class="p">:</span> <span class="p">[[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">]],</span> <span class="p">[],</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">]],</span> <span class="p">[],</span> <span class="p">[[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">]]],</span>
+  <span class="s1">&#39;int_to_node&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;0&#39;</span><span class="p">:</span> <span class="s1">&#39;Alice&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;1&#39;</span><span class="p">:</span> <span class="s1">&#39;Bob&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;2&#39;</span><span class="p">:</span> <span class="s1">&#39;Clara&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;3&#39;</span><span class="p">:</span> <span class="s1">&#39;Darren&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;4&#39;</span><span class="p">:</span> <span class="s1">&#39;Elle&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;5&#39;</span><span class="p">:</span> <span class="s1">&#39;Felicitas&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;6&#39;</span><span class="p">:</span> <span class="s1">&#39;George&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;7&#39;</span><span class="p">:</span> <span class="s1">&#39;Harriett&#39;</span>
+      <span class="p">},</span>
+  <span class="s1">&#39;notes&#39;</span><span class="p">:</span> <span class="s1">&#39;This experiment was conducted as a test.&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;time_unit&#39;</span><span class="p">:</span> <span class="s1">&#39;s&#39;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The actual data is, however, minified and looks more like</p>
+<div class="code javascript highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;edge_changes&quot;</span><span class="p">,</span><span class="s2">&quot;t&quot;</span><span class="p">:[</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.5</span><span class="p">,</span><span class="mf">3.0</span><span class="p">,</span><span class="mf">4.0</span><span class="p">,</span><span class="mf">7.0</span><span class="p">,</span><span class="mf">7.31</span><span class="p">],</span><span class="s2">&quot;t0&quot;</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="s2">&quot;tmax&quot;</span><span class="p">:</span><span class="mf">8.1</span><span class="p">,</span><span class="s2">&quot;N&quot;</span><span class="p">:</span><span class="mi">8</span><span class="p">,</span><span class="s2">&quot;edges_initial&quot;</span><span class="p">:[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">7</span><span class="p">]],</span><span class="s2">&quot;edges_in&quot;</span><span class="p">:[[],[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">7</span><span class="p">]],[[</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">]],[],[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]],[]],</span><span class="s2">&quot;edges_out&quot;</span><span class="p">:[[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">7</span><span class="p">]],[],[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]],[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">7</span><span class="p">]],[],[[</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">]]],</span><span class="s2">&quot;int_to_node&quot;</span><span class="p">:{</span><span class="s2">&quot;0&quot;</span><span class="p">:</span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span><span class="s2">&quot;1&quot;</span><span class="p">:</span><span class="s2">&quot;Bob&quot;</span><span class="p">,</span><span class="s2">&quot;2&quot;</span><span class="p">:</span><span class="s2">&quot;Clara&quot;</span><span class="p">,</span><span class="s2">&quot;3&quot;</span><span class="p">:</span><span class="s2">&quot;Darren&quot;</span><span class="p">,</span><span class="s2">&quot;4&quot;</span><span class="p">:</span><span class="s2">&quot;Elle&quot;</span><span class="p">,</span><span class="s2">&quot;5&quot;</span><span class="p">:</span><span class="s2">&quot;Felicitas&quot;</span><span class="p">,</span><span class="s2">&quot;6&quot;</span><span class="p">:</span><span class="s2">&quot;George&quot;</span><span class="p">,</span><span class="s2">&quot;7&quot;</span><span class="p">:</span><span class="s2">&quot;Harriett&quot;</span><span class="p">},</span><span class="s2">&quot;notes&quot;</span><span class="p">:</span><span class="s2">&quot;This experiment was conducted as a test.&quot;</span><span class="p">,</span><span class="s2">&quot;time_unit&quot;</span><span class="p">:</span><span class="s2">&quot;s&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="reading">
+<h3>Reading<a class="headerlink" href="#reading" title="Permalink to this headline">¶</a></h3>
+<p>Reading temporal network data from a taco is as simple as using <a class="reference internal" href="../reference/tacoma_data_io.html#tacoma.data_io.load_json_taco" title="tacoma.data_io.load_json_taco"><code class="xref py py-func docutils literal notranslate"><span class="pre">tacoma.data_io.load_json_taco()</span></code></a>.</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">temporal_network</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">load_json_taco</span><span class="p">(</span><span class="s1">&#39;temporal_network.taco&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="converting-csv-to-taco">
+<h3>Converting csv to taco<a class="headerlink" href="#converting-csv-to-taco" title="Permalink to this headline">¶</a></h3>
+<p>As indicated above, converting csv-data to data actually
+usable by algorithms can turn out quite tideous.
+Below you can find a commented example on how to load a csv-file
+(here from the SocioPatterns <a class="reference external" href="http://www.sociopatterns.org/datasets/hypertext-2009-dynamic-contact-network/">‘Hypertext 2009’-dataset</a>) and
+convert it to a taco, taken directly from <a class="reference internal" href="../reference/tacoma_data_io.html#module-tacoma.data_io" title="tacoma.data_io"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tacoma.data_io</span></code></a></p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gzip</span>
+<span class="kn">import</span> <span class="nn">csv</span>
+
+<span class="kn">import</span> <span class="nn">tacoma</span> <span class="k">as</span> <span class="nn">tc</span>
+
+<span class="c1"># open gzipped file</span>
+<span class="n">gzip_file</span> <span class="o">=</span> <span class="s1">&#39;ht09_contact_list.dat.gz&#39;</span>
+<span class="k">with</span> <span class="n">gzip</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">gzip_file</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;rt&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="c1"># mappings of nodes to integers</span>
+    <span class="n">node_to_int</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">int_to_node</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="c1"># get an initial t_old</span>
+    <span class="c1"># (this is done to detect changes in the tsv)</span>
+    <span class="n">t_old</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="c1"># list of edge lists</span>
+    <span class="n">edges</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># time points</span>
+    <span class="n">time</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">-</span> <span class="mi">20</span> <span class="p">)</span> <span class="c1">#this is to account for the interval choice [t-20s, t]</span>
+
+        <span class="c1"># if the time changed, we save the new time and</span>
+        <span class="c1"># prepare to save new edges</span>
+        <span class="k">if</span> <span class="n">t_old</span> <span class="o">!=</span> <span class="n">t</span><span class="p">:</span>
+
+            <span class="c1"># When the time changed more than dt,</span>
+            <span class="c1"># append an instance of an empty edge list</span>
+            <span class="c1"># at t = t_old + dt</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">t_old</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">t</span> <span class="o">-</span> <span class="n">t_old</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="p">):</span>
+                <span class="n">edges</span><span class="o">.</span><span class="n">append</span><span class="p">([])</span>
+                <span class="n">time</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t_old</span><span class="o">+</span><span class="mi">20</span><span class="p">)</span>
+
+            <span class="n">edges</span><span class="o">.</span><span class="n">append</span><span class="p">([])</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+
+        <span class="c1"># get the edge</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+
+        <span class="c1"># map the edge to integers</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">node_to_int</span><span class="p">:</span>
+            <span class="n">this_int</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">node_to_int</span><span class="p">)</span>
+            <span class="n">node_to_int</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">node_to_int</span><span class="p">)</span>
+            <span class="n">int_to_node</span><span class="p">[</span><span class="n">this_int</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">j</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">node_to_int</span><span class="p">:</span>
+            <span class="n">this_int</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">node_to_int</span><span class="p">)</span>
+            <span class="n">node_to_int</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">node_to_int</span><span class="p">)</span>
+            <span class="n">int_to_node</span><span class="p">[</span><span class="n">this_int</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+
+        <span class="c1"># save the edge</span>
+        <span class="n">edges</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="nb">sorted</span><span class="p">([</span>
+                                <span class="n">node_to_int</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                                <span class="n">node_to_int</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+                                <span class="p">])))</span>
+        <span class="n">t_old</span> <span class="o">=</span> <span class="n">t</span>
+
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">node_to_int</span><span class="p">)</span>
+    <span class="n">tmax</span> <span class="o">=</span> <span class="n">time</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mf">20.0</span>
+
+
+<span class="c1"># get a new `edge_lists` instance</span>
+<span class="n">el</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">edge_lists</span><span class="p">()</span>
+
+<span class="n">el</span><span class="o">.</span><span class="n">N</span> <span class="o">=</span> <span class="n">N</span>
+<span class="n">el</span><span class="o">.</span><span class="n">tmax</span> <span class="o">=</span> <span class="n">tmax</span>
+<span class="n">el</span><span class="o">.</span><span class="n">edges</span> <span class="o">=</span> <span class="n">edges</span>
+<span class="n">el</span><span class="o">.</span><span class="n">t</span> <span class="o">=</span> <span class="n">time</span>
+<span class="n">el</span><span class="o">.</span><span class="n">time_unit</span> <span class="o">=</span> <span class="s1">&#39;s&#39;</span>
+<span class="n">el</span><span class="o">.</span><span class="n">notes</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    This data is binned.</span>
+
+<span class="s2">    In this data, t0 = 0.0 corresponds to 8am on Jun 29th 2009 (UNIX time 1246255200).</span>
+
+<span class="s2">    For more info, please visit http://www.sociopatterns.org/datasets/hypertext-2009-dynamic-contact-network/ .</span>
+
+<span class="s2">    If you use this data, please cite</span>
+
+<span class="s2">    L. Isella et al.,  What&#39;s in a crowd? Analysis of face-to-face behavioral networks,</span>
+<span class="s2">    Journal of Theoretical Biology 271, 166 (2011).</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+<span class="n">el</span><span class="o">.</span><span class="n">int_to_node</span> <span class="o">=</span> <span class="n">int_to_node</span>
+
+<span class="c1"># verifying that this is a valid temporal network</span>
+<span class="n">tc</span><span class="o">.</span><span class="n">verify</span><span class="p">(</span><span class="n">el</span><span class="p">)</span>
+
+<span class="c1"># save this edge_lists instance</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;ht09.taco&#39;</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">tc</span><span class="o">.</span><span class="n">write_json_taco</span><span class="p">(</span><span class="n">el</span><span class="p">,</span><span class="n">f</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="edge-coordinate-files">
+<h2>Edge coordinate files<a class="headerlink" href="#edge-coordinate-files" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="../reference/tacoma_data_io.html#tacoma.data_io.write_edge_trajectory_coordinates" title="tacoma.data_io.write_edge_trajectory_coordinates"><code class="xref py py-func docutils literal notranslate"><span class="pre">tacoma.data_io.write_edge_trajectory_coordinates()</span></code></a></p>
+</div>
+<div class="section" id="loading-existing-data">
+<h2>Loading existing data<a class="headerlink" href="#loading-existing-data" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="../reference/tacoma_data_io.html#tacoma.data_io.download_and_convert_sociopatterns_high_school_2013" title="tacoma.data_io.download_and_convert_sociopatterns_high_school_2013"><code class="xref py py-func docutils literal notranslate"><span class="pre">tacoma.data_io.download_and_convert_sociopatterns_high_school_2013()</span></code></a></p>
+<p><a class="reference internal" href="../reference/tacoma_data_io.html#tacoma.data_io.download_and_convert_sociopatterns_hypertext_2009" title="tacoma.data_io.download_and_convert_sociopatterns_hypertext_2009"><code class="xref py py-func docutils literal notranslate"><span class="pre">tacoma.data_io.download_and_convert_sociopatterns_hypertext_2009()</span></code></a></p>
+<p><a class="reference internal" href="../reference/tacoma_data_io.html#tacoma.data_io.load_sociopatterns_high_school_2013" title="tacoma.data_io.load_sociopatterns_high_school_2013"><code class="xref py py-func docutils literal notranslate"><span class="pre">tacoma.data_io.load_sociopatterns_high_school_2013()</span></code></a></p>
+<p><a class="reference internal" href="../reference/tacoma_data_io.html#tacoma.data_io.load_sociopatterns_hypertext_2009" title="tacoma.data_io.load_sociopatterns_hypertext_2009"><code class="xref py py-func docutils literal notranslate"><span class="pre">tacoma.data_io.load_sociopatterns_hypertext_2009()</span></code></a></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../visualizations/drawing.html" class="btn btn-neutral float-right" title="Drawing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="binning_and_sampling.html" class="btn btn-neutral" title="Binning and sampling" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Benjamin F. Maier.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.0.29',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

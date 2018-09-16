@@ -1,0 +1,332 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Verification and conversion &mdash; tacoma 0.0.29 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Manipulating temporal networks" href="manipulating_temporal_networks.html" />
+    <link rel="prev" title="Temporal network classes" href="temporal_network_classes.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> tacoma
+          
+
+          
+            
+            <img src="../_static/new_logo_very_small_2width.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0.29
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About this project</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Temporal networks</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="temporal_network_classes.html">Temporal network classes</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Verification and conversion</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#verification">Verification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#conversion">Conversion</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="manipulating_temporal_networks.html">Manipulating temporal networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="binning_and_sampling.html">Binning and sampling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="read_write_and_share.html">Read, write and share</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Visualizations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../visualizations/drawing.html">Drawing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualizations/interactive.html">Interactive</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Structural and temporal analysis</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../structural_and_temporal_analysis/degree.html">Edge counts and degree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../structural_and_temporal_analysis/group_sizes_and_durations.html">Group sizes &amp; durations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../structural_and_temporal_analysis/social_trajectories.html">Social trajectories</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Epidemic Spreading</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../epidemic_spreading/gillespie.html">Dynamic Gillespie SSA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../epidemic_spreading/epidemic_classes.html">Epidemic classes</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Modeling</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modeling/flockworks.html">Flockworks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling/activity_model.html">Edge activity model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling/dynamic_rgg.html">Dynamic RGGs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling/zsbb.html">ZSSB model</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../reference/cpp_core.html">Relevant C++-core classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/tacoma_api.html">API module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/tacoma_analysis.html">Analysis module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/tacoma_tools.html">Tools module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/tacoma_drawing.html">Drawing module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/tacoma_interactive.html">Interactive module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/tacoma_data_io.html">Data I/O module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/tacoma_model_conversions.html">Models conversion module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/tacoma_flockwork.html">Flockwork module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/tacoma_load_model_parameters.html">Loading model parameters module</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">tacoma</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Verification and conversion</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/temporal_networks/verification_and_conversion.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="verification-and-conversion">
+<h1>Verification and conversion<a class="headerlink" href="#verification-and-conversion" title="Permalink to this headline">¶</a></h1>
+<p>Especially when dealing with real-world data
+we need to verify that our networks are in the right format for further
+analysis. We also need to convert the formats to each other.</p>
+<div class="section" id="verification">
+<h2>Verification<a class="headerlink" href="#verification" title="Permalink to this headline">¶</a></h2>
+<p>Both <a class="reference internal" href="../reference/_generate/_tacoma.edge_lists.html#_tacoma.edge_lists" title="_tacoma.edge_lists"><code class="xref py py-class docutils literal notranslate"><span class="pre">_tacoma.edge_lists</span></code></a> and <a class="reference internal" href="../reference/_generate/_tacoma.edge_changes.html#_tacoma.edge_changes" title="_tacoma.edge_changes"><code class="xref py py-class docutils literal notranslate"><span class="pre">_tacoma.edge_changes</span></code></a> need to follow
+certain restrictions such that all algorithms in the package will work without
+error. The restrictions are as follows</p>
+<ul class="simple">
+<li>All event times including <span class="math notranslate nohighlight">\(t_0\)</span> and <span class="math notranslate nohighlight">\(t_\mathrm{max}\)</span> need to be in order
+and none of them must be equal.</li>
+<li>The lists <span class="math notranslate nohighlight">\(t\)</span> and <cite>edge_lists</cite> must be of equal length (<span class="math notranslate nohighlight">\(t\)</span>, <cite>edges_in</cite>,
+and <cite>edges_out</cite>, respectively.</li>
+<li>Each list containing edges must not contain duplicate edges, each edge <span class="math notranslate nohighlight">\((i,j)\)</span>
+must fulfill <span class="math notranslate nohighlight">\(i&lt;j\)</span>, there must not be any self-loops.</li>
+<li>Each edge <span class="math notranslate nohighlight">\((i,j)\)</span> must fulfill <span class="math notranslate nohighlight">\(0\leq i&lt;N\)</span> and <span class="math notranslate nohighlight">\(0\leq j &lt;N\)</span>.</li>
+<li>Entries of <cite>edges_in</cite> and <cite>edges_out</cite> corresponding to the same event must not
+contain the same edges (one edge cannot get activated and deactivated at the same time).</li>
+<li>The map <cite>int_to_node</cite> must either contain no entries, or <cite>N</cite> entries and has to
+be one-to-one.</li>
+</ul>
+<p>In order to verify that a <code class="docutils literal notranslate"><span class="pre">temporal_network</span></code> fulfills these conditions, do</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tc</span><span class="o">.</span><span class="n">verify</span><span class="p">(</span><span class="n">temporal_network</span><span class="p">)</span>
+<span class="go">0</span>
+</pre></div>
+</div>
+<p>The function will return the number of found errors. It will also be very verbose about
+any errors. Within verification, any edge where <span class="math notranslate nohighlight">\(i&gt;j\)</span> will be swapped such that
+afterwards, <span class="math notranslate nohighlight">\(i&lt;j\)</span>.</p>
+</div>
+<div class="section" id="conversion">
+<h2>Conversion<a class="headerlink" href="#conversion" title="Permalink to this headline">¶</a></h2>
+<div class="figure" id="id1">
+<img alt="This is how conversion works." src="../_images/conversion.png" />
+<p class="caption"><span class="caption-text">How to convert formats.</span></p>
+</div>
+<p>For different analyses or algorithms we need temporal networks in different formats.
+Since <cite>edge_lists</cite> and <cite>edge_changes</cite> are the main formats one can convert them to
+each other easily using</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">E_L</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">E_C</span><span class="p">)</span>
+<span class="n">E_C</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">E_L</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><cite>edge_trajectories</cite> can be obtained using</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">E_T</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">convert_to_edge_trajectories</span><span class="p">(</span><span class="n">E_C</span><span class="p">)</span>
+<span class="n">E_T</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">convert_to_edge_trajectories</span><span class="p">(</span><span class="n">E_L</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><cite>edge_trajectories</cite> can only be converted to <cite>edge_changes</cite>. This is done by</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">E_C</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">convert_edge_trajectories</span><span class="p">(</span><span class="n">E_T</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="manipulating_temporal_networks.html" class="btn btn-neutral float-right" title="Manipulating temporal networks" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="temporal_network_classes.html" class="btn btn-neutral" title="Temporal network classes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Benjamin F. Maier.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.0.29',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
