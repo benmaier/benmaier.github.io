@@ -316,7 +316,7 @@ retina(corr_canvas,corr_ctx,width,height);
 var corr_timer = d3.interval(function(){
     compute_correlation_length();
     draw_corr();
-},1000);
+},100);
 
 function draw_corr() {
     corr_ctx.save();
