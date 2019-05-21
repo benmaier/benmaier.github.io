@@ -1,0 +1,435 @@
+<html>
+<meta charset="utf-8">
+<script src="https://d3js.org/d3-force.v1.min.js"></script>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="dat.gui.min.js"></script>
+<script src="bezier.js"></script>
+<style>
+.edge{
+  stroke: white;
+  stroke-width: 1;
+}
+
+.graphSVG{
+  background-color: black;
+}
+
+div.container {
+  width: 100%;
+  border: 1px solid gray;
+}
+
+div.tooltip {
+  position: absolute;
+  text-align: center;
+  width: 180px;
+  padding: 2px;
+  font: 12px sans-serif;
+  background: lightsteelblue;
+  border: 0px;
+  border-radius: 8px;
+  pointer-events: none;
+}
+</style>
+
+<body>
+  <div id="graphDiv"></div>
+
+<script>
+var defaultNodeCol = "white",
+    highlightCol = "yellow";
+
+var height = window.innerHeight;
+var graphWidth =  window.innerWidth;
+
+var graphCanvas = d3.select('#graphDiv').append('canvas')
+.attr('width', graphWidth + 'px')
+.attr('height', height + 'px')
+.node();
+
+var context = graphCanvas.getContext('2d');
+
+var div = d3.select("body").append("div")
+    .attr("class", "tooltip")
+    .style("opacity", 0);
+
+
+var simulation = d3.forceSimulation()
+              .force("center", d3.forceCenter(graphWidth / 2, height / 2))
+              .force("x", d3.forceX(graphWidth / 2).strength(0.01))
+              .force("y", d3.forceY(height / 2).strength(0.01))
+              .force("charge", d3.forceManyBody().strength(-200))
+              .force("link", d3.forceLink().strength(1).id(function(d) { return d.id; }).distance(100))
+              .alphaTarget(0)
+              .alphaDecay(0.05)
+
+var transform = d3.zoomIdentity;
+
+function getControlPoint(d)
+{
+}
+
+function getArrowPoint(Ps,C,Pt,Rs,Rt)
+{
+    
+}
+
+
+
+d3.json("sample_data.json",function(error,data){
+  console.log(data)
+
+  initGraph(data)
+
+  function initGraph(tempData){
+
+
+
+    var graph = {};
+
+    tempData.nodes.forEach(function(d){
+        graph[d.id] = [];
+    });
+
+    tempData.edges.forEach(function(d){
+        graph[d.source].push(d.target);
+    });
+    console.log(graph);
+    var gui = new dat.GUI();
+
+    var r1 = {r:55};
+    var r2 = {r:32};
+    var cr = {curvature:0.6};
+    var linewidth = {width:3};
+    var linkalpha = {alpha:0.8};
+    var nodestrokewidth = {nodestrokewidth:3};
+    var headlength = {headlength:4};
+    gui.add(r1, 'r', 2, 100).onChange(render);
+    gui.add(r2, 'r', 2, 100).onChange(render);
+    gui.add(cr, 'curvature', 0, 2).onChange(render);
+    gui.add(linewidth, 'width', 1, 5).onChange(render);
+    gui.add(linkalpha, 'alpha', 0, 1).onChange(render);
+    gui.add(nodestrokewidth, 'nodestrokewidth', 0, 10).onChange(render);
+    gui.add(headlength, 'headlength', 0, 10).onChange(render);
+
+    function zoomed() {
+      console.log("zooming")
+      transform = d3.event.transform;
+      simulationUpdate();
+    }
+
+    d3.select(graphCanvas)
+        .call(d3.drag().subject(dragsubject).on("start", dragstarted).on("drag", dragged).on("end",dragended))
+        .call(d3.zoom().scaleExtent([1 / 10, 8]).on("zoom", zoomed))
+
+  function dragsubject() {
+    var i,
+    x = transform.invertX(d3.event.x),
+    y = transform.invertY(d3.event.y),
+    dx,
+    dy;
+    for (i = tempData.nodes.length - 1; i >= 0; --i) {
+      node = tempData.nodes[i];
+      dx = x - node.x;
+      dy = y - node.y;
+      let radius;
+      if (i == 0)
+        radius = r1.r;
+      else
+        radius = r2.r;
+
+
+      if (dx * dx + dy * dy < radius * radius) {
+
+        node.x = transform.applyX(node.x);
+        node.y = transform.applyY(node.y);
+
+        return node;
+      }
+    }
+  }
+
+
+  function dragstarted() {
+    if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+    d3.event.subject.fx = transform.invertX(d3.event.x);
+    d3.event.subject.fy = transform.invertY(d3.event.y);
+  }
+
+  function dragged() {
+    d3.event.subject.fx = transform.invertX(d3.event.x);
+    d3.event.subject.fy = transform.invertY(d3.event.y);
+
+  }
+
+  function dragended() {
+    if (!d3.event.active) simulation.alphaTarget(0);
+    d3.event.subject.fx = null;
+    d3.event.subject.fy = null;
+  }
+
+    simulation.nodes(tempData.nodes)
+              .on("tick",simulationUpdate);
+
+    simulation.force("link")
+              .links(tempData.edges);
+
+
+
+    function render(){
+        simulationUpdate();
+    }
+
+    function get_B(t,P0,P1,P2){
+        return {
+                x: P1.x + (1-t)*(1-t)*(P0.x-P1.x)+t*t*(P2.x-P1.x), // point
+                y: P1.y + (1-t)*(1-t)*(P0.y-P1.y)+t*t*(P2.y-P1.y),
+                xp: 2*(1-t)*(P1.x-P0.x)+2*t*(P2.x-P1.x), // derivative
+                yp: 2*(1-t)*(P1.y-P0.y)+2*t*(P2.y-P1.y)
+        }
+    }
+
+    function get_cost_and_point(t,P0,P1,P2,R){
+        let B = get_B(t,P0,P1,P2); // get point and derivative
+        return {
+                c: R*R - ( Math.pow(B.x-P2.x,2) + Math.pow(B.y-P2.y,2)), // get cost
+                cp: -2*(B.x-P2.x)*B.xp-2*(B.y-P2.y)*B.yp,                // cost derivative
+                B: B // point and point derivative
+        }
+    }
+
+    function get_arrow_base_cost_and_point(t,P0,P1,P2,R,A){
+        let B = get_B(t,P0,P1,P2); // get point and derivative
+        return {
+                c: R*R - ( Math.pow(B.x-A.x,2) + Math.pow(B.y-A.y,2)), // get cost
+                cp: -2*(B.x-A.x)*B.xp-2*(B.y-A.y)*B.yp,                // cost derivative
+                B: B // point and point derivative
+        }
+    }
+
+    function get_arrow_point_and_direction(P0,P1,P2,R){
+        let t = 0.9;       // initial guess: source node position
+        let old_t = -1;  // dummy 
+        let C;
+
+        //newton-raphson with accuracy of 1 per mille
+        while(Math.abs(1-t/old_t)>1e-3)
+        {
+            C = get_cost_and_point(t,P0,P1,P2,R);
+            old_t = t;
+            t = t - C.c / C.cp;
+        }
+        // norm direction vector
+        let D = Math.sqrt( Math.pow(C.B.xp,2) + Math.pow(C.B.yp,2) );
+        C.B.xp /= D;
+        C.B.yp /= D;
+        // add t value
+        C.B.t = t;
+        return C.B;
+    }
+
+    function get_arrow_base_and_direction(P0,P1,P2,R,A,t_initial){
+        let t = t_initial;       // initial guess: source node position
+        let old_t = -1;  // dummy 
+        let C;
+
+        //newton-raphson with accuracy of 1 per mille
+        while(Math.abs(1-t/old_t)>1e-3)
+        {
+            C = get_arrow_base_cost_and_point(t,P0,P1,P2,R,A);
+            old_t = t;
+            t = t - C.c / C.cp;
+        }
+        // norm direction vector
+        let D = Math.sqrt( Math.pow(C.B.xp,2) + Math.pow(C.B.yp,2) );
+        C.B.xp /= D;
+        C.B.yp /= D;
+        // add t value
+        C.B.t = t;
+        return C.B;
+    }
+
+    function quadraticBezierLength(P0, P1, P2) {
+        // from https://stackoverflow.com/questions/37082744/split-one-quadratic-bezier-curve-into-two
+      let a = {
+          x : P0.x - 2 * P1.x + P2.x,
+          y : P0.y - 2 * P1.y + P2.y
+         };
+      let b = {
+          x : 2 * P1.x - 2 * P0.x,
+          y : 2 * P1.y - 2 * P0.y
+        };
+      let  A = 4 * (a.x * a.x + a.y * a.y);
+      let  B = 4 * (a.x * b.x + a.y * b.y);
+      let  C = b.x * b.x + b.y * b.y;
+
+      let  Sabc = 2 * Math.sqrt(A + B + C);
+      let  A_2 = Math.sqrt(A);
+      let  A_32 = 2 * A * A_2;
+      let  C_2 = 2 * Math.sqrt(C);
+      let  BA = B / A_2;
+
+      return (A_32 * Sabc + A_2 * B * (Sabc - C_2) + (4 * C * A - B * B) * Math.log((2 * A_2 + BA + Sabc) / (BA + C_2))) / (4 * A_32);
+    };
+
+    function get_distance(P0,P1){
+        return Math.sqrt(Math.pow(P1.x-P0.x,2) + Math.pow(P1.y-P0.y,2));
+    }
+
+    function quadraticBezierLength2(P0,P1,P2) {
+      let N = 100;
+      let d = 0;
+      let lastPoint = P0;
+      for(let i=1; i<=N; ++i)
+      {
+          let thisPoint = get_B(i/N,P0,P1,P2)
+          d += get_distance(lastPoint,thisPoint);
+          lastPoint = thisPoint;
+      }
+      return d;
+    }
+
+
+    function simulationUpdate(){
+      context.save();
+
+      context.clearRect(0, 0, graphWidth, height);
+      context.translate(transform.x, transform.y);
+      context.scale(transform.k, transform.k);
+
+      tempData.edges.forEach(function(d) {
+
+            let ex = d.target.x - d.source.x;
+            let ey = d.target.y - d.source.y;
+            let D = Math.sqrt( ex*ex + ey*ey );
+            let this_curvature;
+            ex = ex / D;
+            ey = ey / D;
+            let headLength = headlength.headlength*linewidth.width; // this is the distance between arrow point and
+
+            let targetRadius, sourceRadius;
+            if (d.target.id == 0)
+              targetRadius = r1.r + nodestrokewidth.nodestrokewidth*0.5;
+            else
+              targetRadius = r2.r + nodestrokewidth.nodestrokewidth*0.5;
+
+            if (d.source.id == 0)
+              sourceRadius = r1.r + nodestrokewidth.nodestrokewidth*0.5;
+            else
+              sourceRadius = r2.r + nodestrokewidth.nodestrokewidth*0.5;
+
+            if ((graph[d.target.id].indexOf(d.source.id) >= 0) || (D-targetRadius-sourceRadius-headLength<0))
+              this_curvature = cr.curvature;
+            else
+              this_curvature = 0;
+            
+            let ex2 = -ey;
+            let ey2 = ex;
+            let cx = d.source.x + 0.5*D*ex + this_curvature * D * ex2;
+            let cy = d.source.y + 0.5*D*ey + this_curvature * D * ey2;
+            let C = {x: cx, y: cy}    
+
+            B = get_arrow_point_and_direction(d.source,C,d.target,targetRadius);
+            //let scale = 3*Math.sqrt(linewidth.width);
+                                           // beginning of the arrow head
+
+            // compute length of whole curve
+            let L;
+            if (this_curvature > 0)
+                L = quadraticBezierLength(d.source,C,d.target);
+            else
+                L = D;
+
+
+            let distance_from_target_to_arrowhead_base = targetRadius + headLength;
+          //console.log(bezier_t,distance_from_target_to_arrowhead_base,L);
+
+            //let controlpoint_center = get_B(,d.source,C,d.target);
+            let controlpoint_center = get_arrow_base_and_direction(d.source,C,d.target,headLength,B,B.t-headLength/L);
+            let arrow_dir = { xp: B.x - controlpoint_center.x, yp: B.y - controlpoint_center.y }
+            let arrow_D = Math.sqrt( Math.pow(arrow_dir.xp,2) + Math.pow(arrow_dir.yp,2));
+            arrow_dir.xp /= arrow_D;
+            arrow_dir.yp /= arrow_D;
+
+            arrow_dir.xp = controlpoint_center.xp
+            arrow_dir.yp = controlpoint_center.yp
+            let controlpoint_left = {
+                x: controlpoint_center.x + headLength/Math.sqrt(3) * (-arrow_dir.yp),
+                y: controlpoint_center.y + headLength/Math.sqrt(3) * (arrow_dir.xp)
+            };
+            let controlpoint_right = {
+                x: controlpoint_center.x + headLength/Math.sqrt(3) * (arrow_dir.yp),
+                y: controlpoint_center.y + headLength/Math.sqrt(3) * (-arrow_dir.xp)
+            };
+
+            // draw the link
+            context.lineWidth = linewidth.width;
+            context.beginPath();
+            context.strokeStyle = "rgba(0,0,0,"+linkalpha.alpha+")";
+            /*
+            // start the link at the radius of the source node and end it at the beginning of the arrow head
+            context.setLineDash([ 0, sourceRadius, L - sourceRadius - targetRadius - headLength, targetRadius + headLength]);
+
+            context.moveTo(d.source.x, d.source.y);
+            context.quadraticCurveTo(C.x,C.y,d.target.x, d.target.y);
+            */
+            var curve = new Bezier(d.source,C,d.target);
+            c = curve.split(0,controlpoint_center.t);
+            context.moveTo(c.points[0].x, c.points[0].y);
+            context.quadraticCurveTo(c.points[1].x, c.points[1].y,c.points[2].x, c.points[2].y);
+            context.stroke();
+
+            context.setLineDash([]);
+          /*
+            context.lineWidth = 1;
+            context.strokeStyle = "red";
+            context.beginPath();
+            context.moveTo(B.x, B.y);
+            context.lineTo(controlpoint_center.x, controlpoint_center.y);
+            context.stroke();
+          */
+
+            
+            context.lineWidth = 0;
+            context.beginPath();
+          
+            context.moveTo(B.x,B.y);
+            context.lineTo(controlpoint_left.x,controlpoint_left.y);
+            context.lineTo(controlpoint_right.x,controlpoint_right.y);
+            context.lineTo(B.x,B.y);
+            context.fillStyle = "rgba(0,0,0,"+linkalpha.alpha+")";
+            context.fill();
+            //context.stroke();
+
+            
+        });
+
+        // Draw the nodes
+        tempData.nodes.forEach(function(d, i) {
+
+            context.beginPath();
+            let radius;
+            if (d.id == 0)
+              radius = r1.r;
+            else
+              radius = r2.r;
+
+            context.arc(d.x, d.y, radius, 0, 2 * Math.PI, true);
+            context.lineWidth = nodestrokewidth.nodestrokewidth;
+            //context.fillStyle = d.col ? "red":"black"
+            context.fillStyle = "white";
+            context.fill();
+            context.strokeStyle = "black";
+            context.stroke();
+        });
+
+        context.restore();
+//        transform = d3.zoomIdentity;
+    }
+  }
+})
+
+
+</script>
+</body>
+
