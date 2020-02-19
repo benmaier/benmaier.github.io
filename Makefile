@@ -11,6 +11,7 @@ updatecv:
 	cd hugo/CV; git fetch; git pull
 	git add hugo/CV
 	git commit -m "updated cv"
+	cp -r hugo/CV ./CV/
 
 buildfromcv:
 	cd hugo; python fill_config.py

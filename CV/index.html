@@ -1,0 +1,86 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>CV Ben F. Maier</title>
+  <meta name="description" content="Ben F. Maier's CV, Lebenslauf">
+  <meta name="author" content="Ben F. Maier">
+
+  <link rel="stylesheet" href="css/cv.css">
+  <link rel="stylesheet" href="css/slider.css">
+
+</head>
+
+<body>
+  <div class="cv-header-row">
+          <div id="h1" class="cv-title">Ben F. Maier — CV</div>
+  </div>
+  <div class="cv-control-row">
+      <table class="cv-control-table" cellspacing="5">
+          <tr>
+              <td class="cv-control-td">English</td>
+              <td class="cv-control-td">
+              <label class="switch">
+                  <input type="checkbox" onclick="CV.toggleLanguage()">
+                  <span class="slider round"></span>
+              </label>
+              </td>
+              <td class="cv-control-td">Deutsch</td>
+          </tr>
+          <tr>
+              <td></td>
+              <td class="cv-control-td">
+              <label class="switch">
+                  <input type="checkbox" onclick="CV.toggleAllSections()">
+                  <span class="slider round"></span>
+              </label>
+              </td>
+              <td class="cv-control-td">Show all sections</td>
+          </tr>
+          <tr>
+              <td></td>
+              <td class="cv-control-td">
+              <label class="switch">
+                  <input type="checkbox" onclick="CV.toggleFullView()">
+                  <span class="slider round"></span>
+              </label>
+              </td>
+              <td class="cv-control-td">Show all entries per section</td>
+          </tr>
+          <tr>
+              <td></td>
+              <td class="cv-control-td">
+                  <button name="download" class="button" onclick="download()"><b>⇓</b></a></button>
+              </td>
+              <td class="cv-control-td">Download PDF</td>
+          </tr>
+
+       </table>
+  </div>
+  </label>
+
+  <div class="cv-main-row">
+      <div id="cvcontainer" class="cv-container">
+      </div>
+  </div>
+
+  <script src="js/templates.js"></script>
+  <script src="js/cv.js"></script>
+  <script>
+        let CV = new CVBuilder("cvcontainer", "data/cv_content.json");
+
+        function download() {
+
+            let a = document.createElement('a')
+            let url = "CV_Ben_F._Maier.pdf";
+            a.href = url;
+            a.download = url.split('/').pop()
+            document.body.appendChild(a)
+            a.click()
+            document.body.removeChild(a)
+        }
+  </script>
+</body>
+</html>
