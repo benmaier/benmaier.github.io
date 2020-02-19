@@ -1,9 +1,0 @@
-Data I/O module
-----------------------
-
-.. automodule:: tacoma.data_io
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-
