@@ -1,0 +1,6 @@
+[submodule "hugo/themes/hugo-devresume-theme"]
+	path = hugo/themes/hugo-devresume-theme
+	url = git@github.com:benmaier/hugo-devresume-theme.git
+[submodule "hugo/CV"]
+	path = hugo/CV
+	url = git@github.com:benmaier/CV.git
