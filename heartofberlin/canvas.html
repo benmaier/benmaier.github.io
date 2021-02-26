@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<canvas width="960" height="500"></canvas>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script>
+
+var canvas = d3.select("canvas").node(),
+    context = canvas.getContext("2d"),
+    width = canvas.width,
+    height = canvas.height;
+
+var polygons = [[[0,100],[40,550],[300,3]]];
+var density = [];
+var xtrans = d3.scaleLinear().range([0,width]); 
+var ytrans = d3.scaleLinear().range([height,0]);
+
+
+draw();
+
+function draw() {
+
+  context.clearRect(0, 0, width, height);
+  context.beginPath();
+  drawCell(polygons[0]);
+  context.fillStyle = "#f00";
+  context.fill();
+
+  /*
+  context.beginPath();
+  for (var i = 0, n = polygons.length; i < n; ++i) drawCell(polygons[i].points);
+  context.strokeStyle = "#000";
+  context.stroke();
+  */
+}
+
+function drawCell(cell) {
+  if (!cell) return false;
+  //context.moveTo(xtrans(cell[0][0]), ytrans(cell[0][1]));
+  for (var j = 1, m = cell.length; j < m; ++j) {
+    //context.lineTo(xtrans(cell[j][0]), ytrans(cell[j][1]));
+  }
+  context.closePath();
+  return true;
+}
+
+</script>
+
