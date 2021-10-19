@@ -8,32 +8,40 @@
   <meta name="description" content="Ben F. Maier's CV, Lebenslauf">
   <meta name="author" content="Ben F. Maier">
 
-  <link rel="stylesheet" href="css/cvprint.css">
+  <link rel="stylesheet" href="css/cvprint-apple.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
 
 </head>
 
 <body>
   <div class="cv-header-row">
       <div class="cv-header-column">
-          <div id="h1" class="cv-title">Ben F. <br/>Maier — CV</div>
+          <div id="h1" class="cv-title">Ben F. <br/>Maier</div>
       </div>
 
+      <!--
       <div class="cv-header-column">
-      <div id="personalcontainer" class="cv-personal-container">
-          Robert Koch-Institut<br/>
-          Nordufer 20<br/>
-          13353 Berlin<br/>
-          GERMANY<br/>
-          <br/>
-          contact@benmaier.org<br/>
-          benmaier.org</br>
+        <div id="personalcontainer" class="cv-personal-container">
+        </div>
       </div>
-      </div>
+      -->
   </div>
 
   <div class="cv-main-row">
       <div class="cv-main-column-left">
           <div id="profilecontainer" class="cv-main-column-left-content">
+          Robert Koch Institute<br/>
+          Nordufer 20<br/>
+          13353 Berlin<br/>
+          GERMANY<br/>
+          <br/>
+          contact@<br/>
+          benmaier.org<br/>
+          <br/>
+          github.com<br/>/benmaier<br/>
           </div>
       </div>
       <div class="cv-main-column-right">
@@ -45,7 +53,10 @@
   <script src="js/templates.js"></script>
   <script src="js/cv.js"></script>
   <script>
-        let CV = new CVBuilder("cvcontainer", "data/cv_content.json","profilecontainer");
+        _CV_SHOW_UNIMPORTANT = true;
+        //let CV = new CVBuilder("cvcontainer", "data/cv_content.json","profilecontainer");
+        let CV = new CVBuilder("cvcontainer", "data/cv_content.json","");
   </script>
+
 </body>
 </html>
