@@ -119,6 +119,7 @@ tr.cv-row {
   line-height: 1.5;
   padding-left: 0px;
   margin-left: 0px;
+  page-break-inside: avoid;
 }
 
 td {
@@ -184,7 +185,7 @@ td.cv-left-col {
 
 .cv-personal-container {
     float: right;
-    color: #432222;
+    color: #232222;
     margin-right: 36pt;
     margin-top: 5pt;
     text-align: right;
