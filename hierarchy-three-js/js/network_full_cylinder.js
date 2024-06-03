@@ -58,7 +58,7 @@ let internalNodeCircles = [];
 
 let scale = 15;
 
-fetch('/power.json')
+fetch('power.json')
   .then(response => response.json())
   .then(function(data) {
     // graph 
