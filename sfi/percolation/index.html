@@ -1,0 +1,47 @@
+<meta charset="utf-8">
+<head>
+<script src="./libs/d3.v4.min.js"></script>
+<script src="./libs/d3-scale-chromatic.v1.min.js"></script>
+<script src="./libs/d3-color.v1.min.js"></script>
+<script src="./libs/simple_plot.js"></script>
+<script src="./libs/widget.v3.4.js"></script>
+<link rel="stylesheet" type="text/css" href="./css/widgets_white_bg.css">
+<link rel="stylesheet" type="text/css" href="./css/main.css">
+</head>
+<body>
+
+    <div id="all_container">
+
+        <div id="control_container" style="float:left; margin-right: 8px;"></div>
+        <div id="histogram_container"></div>
+        <br/>
+        <div id="percolation_container" style="float:left; border: 1px solid black; margin-right: 8px;"></div>
+        <div id="largest_component_container" style="float:left;"></div>
+        <div id="variance_container"></div>
+        <br>
+        <div>
+           <i>Developed for 
+               <a href="https://complexityexplorer.org">
+                 SFI's Complexity Explorer</a>
+               by
+               <a href="http://benmaier.org">Ben F. Maier</a>
+               in collaboration with the
+               <a href="http://rki.de">Robert Koch-Institute</a>.
+           </i>
+        </div>    
+
+    </div>
+
+
+<script src="percolation.js"></script>
+<script>
+initialize_percolation_canvas();
+create_a_new_one();
+d3.selectAll("#all_container").attr("style","max-width: "+(width+plot_width+10)+"; min-width:"+(width+10)+";");
+
+</script>
+<script src="./gui/gui.js"></script>
+
+
+</body>
+
