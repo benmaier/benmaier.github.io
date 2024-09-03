@@ -41,7 +41,7 @@
     "education": ["Education", "Ausbildung"],
     "teaching": ["Teaching", "Lehre"],
     "reviews": ["Reviewing Work", "Gutachten"],
-    "academic": ["Academic Positions", "Akademische Stellen"],
+    "academic": ["", ""],
     "additional_working": [
       "Additional Work Experience",
       "Zusätzliche Arbeitserfahrung"
@@ -70,7 +70,7 @@
     "shortprofile": [
         {
             "description": [
-                           "<p class=\"cv-short-desc\">I develop mathematical models and software frameworks to solve them, currently in quantitative finance. Experienced in setting up automated big-data processing solutions. Excellent technical and inter-personal communication skills. Team player. More than a decade of experience in renowned inter-disciplinary research with a PhD in theoretical physics and a broad interest in mechanistic modelling of interconnected systems. Advised the German government on model-informed mitigation strategies during the COVID-19 pandemic. Developing investment strategies at Deutsche Bank.</p>",
+                           "<p class=\"cv-short-desc\">I develop mathematical models of the world and software frameworks to learn from them, last in quantitative finance. Experienced in setting up automated big-data analysis and processing solutions. Excellent technical and inter-personal communication skills. Team player. More than a decade of experience in renowned inter-disciplinary research with a PhD in theoretical physics and a broad interest in mechanistic modelling of interconnected systems. Advised the German government on model-informed mitigation strategies during the COVID-19 pandemic. Developed investment strategies at Deutsche Bank.</p>",
                            "<p class=\"cv-short-desc\">Ich entwickle mathematische Modelle und Software-Frameworks zu deren Lösung. Erfahren in der Einrichtung automatisierter Big-Data-Verarbeitungslösungen. Ausgezeichnete technische und zwischenmenschliche Kommunikationsfähigkeiten. Teamplayer. Mehr als ein Jahrzehnt Erfahrung in renommierter interdisziplinärer Forschung mit einem Doktortitel in theoretischer Physik und einem breiten Interesse an der mechanistischen Modellierung vernetzter Systeme mit Hilfe von Netzwerktheorie und Nichtlinearer Dynamik. Beratung der deutschen Regierung zu modellgestützten Eindämmungsstrategien während der COVID-19-Pandemie.</p>"
             ]
         }
@@ -273,7 +273,7 @@
     ],
     "teaching": [     
       {
-        "date": ["since 2016", "seit 2016"],
+        "date": ["2016&ndash;2023", "2016&ndash;2023"],
         "name": ["Co-Supervisor", "Co-Betreuer"],
         "place": ["RKI, HU Berlin &amp; DTU", "RKI, HU Berlin &amp; DTU"],
         "description": [
@@ -357,26 +357,6 @@
     ],
     "additional_working": [
       {
-        "date": ["2019"],
-        "name": ["Full-Stack Developer", "Full-Stack Entwickler"],
-        "place": ["Robert Koch Institute", "Robert Koch-Institut"],
-        "description": [
-          "Conceptualization, implementation, and deployment of an internal web-application to improve data management and work flows (based on Django 2, JavaScript, MySQL 8)",
-          "Konzeptionierung, Implementierung und Deployment einer internen Web-Applikation um Datenpflege und Arbeitsprozesse zu vereinfachen (basierend auf Django 2, JavaScript, MySQL 8)"
-        ],
-        "important": true
-      },
-      {
-        "date": ["2015&ndash;2022"],
-        "name": ["Scientific Consultant / Data Scientist", "Wissenschaftlicher Berater"],
-        "place": ["Self-employed", "Freiberuflich"],
-        "description": [
-          "customers include e.g. Universal Music Germany and the Santa Fe Institute",
-          "Kunden u.a. Universal Music Deutschland und das Santa Fe Institut"
-        ],
-        "important": true
-      },
-      {
         "date": ["2010&ndash;2011"],
         "name": ["Student Assistant", "Werkstudent"],
         "place": ["Institute for Scientific Instruments (Berlin-Adlershof)"],
@@ -455,8 +435,8 @@
         "name": ["Quantitative Strategist"],
         "place": ["Group Strategic Analysis, Deutsche Bank, Berlin"],
         "description": [
-          "Developing and implementing investment products for retirement solutions.",
-          "Modellierung der Dynamik zeitlich ver&auml;nderlicher Netzwerke. Analysen gro&szlig;skaliger Datens&auml;tze auf nationaler Ebene mithilfe maschinellen Lernens."
+          "Full-stack development and implementation of algorithmic investment products.",
+          "Full-Stack Entwicklung und Implementierung von algorithmischen Investmentprodukten."
         ],
         "important": true
       },
@@ -465,7 +445,7 @@
         "name": ["Postdoc"],
         "place": ["DTU Copenhagen, PI: Sune Lehmann", "DTU Kopenhagen, Gruppenleiter: Sune Lehmann J&oslash;rgensen"],
         "description": [
-          "Modeling of temporal network dynamics and big-data analyses of nation-scale social systems with machine-learning techniques and applications in infectious-disease modeling. Supervising students and independent research projects.",
+          "Modeling of temporal network dynamics and big-data analyses of nation-scale social systems with machine-learning techniques and applications in infectious-disease modeling. Supervising students and independent research projects. Dev work in Python, C++, and JS.",
           "Modellierung der Dynamik zeitlich ver&auml;nderlicher Netzwerke. Analysen gro&szlig;skaliger Datens&auml;tze auf nationaler Ebene mithilfe maschinellen Lernens."
         ],
         "important": true
@@ -475,8 +455,28 @@
         "name": ["Postdoc &amp; Deputy PI", "Postdoc &amp; Stellv. Fachgebietsleiter"],
         "place": ["Robert Koch Institute, PI: Dirk Brockmann", "Robert Koch-Institut, Gruppenleiter: Dirk Brockmann"],
         "description": [
-          "Research focusing on epidemic spreading processes in human systems, mainly infectious disease modeling and data analysis regarding the COVID-19 pandemic. Supervising students and research projects. Reporting to crisis response panel and German ministry of health. Administrative tasks.",
+          "Research focusing on epidemic spreading processes in human systems, mainly infectious disease modeling and data analysis regarding the COVID-19 pandemic. Supervising students and research projects. Reporting to crisis response panel and German ministry of health. Administrative tasks. Dev work in Python, C++, and JS. Administering web and database servers.",
           "Forschung zu infektiösen Ausbreitungsprozessen in menschlichen Systemen, hauptsächlich mit Methoden der Netzwerktheorie und Statistischer Physik. Betreuung von Studierenden und Forschungsprojekten. Reporting to crisis response panel and German ministry of health. Administrative Aufgaben."
+        ],
+        "important": true
+      },
+      {
+        "date": ["2015&ndash;2022"],
+        "name": ["Data Scientist", "Wissenschaftlicher Berater / Data Scientist"],
+        "place": ["Self-employed, customers incl. Universal Music Germany, Santa Fe Institute", "Freiberuflich, u.a. Universal Music Deutschland, Santa Fe Institut"],
+        "description": [
+          "Consulted and developed custom analysis software for companies to design marketing strategies based on big data. Development mostly in Python and using PostgreSQL, Qubole, AWS.",
+          "Beratung und Implementierung zur Analyse von gros&szlig;skaligen Datens&auml;tzen, Interaktive Darstellung von Netzwerken, interaktive Lerninhalte f&uuml;r MOOC. Python und JavaScript (D3.js)."
+        ],
+        "important": true
+      },
+      {
+        "date": ["2018&ndash;2019"],
+        "name": ["Full-Stack Developer", "Full-Stack Entwickler"],
+        "place": ["Robert Koch Institute", "Robert Koch-Institut"],
+        "description": [
+          "In-house consulting and prototype development of a data acquisition and management application for the Center for International Health Protection (backend and frontend) in Django, MySQL, JavaScript. Preparation of geographic location and metadata for scientific use and interactive presentation (MySQL, d3.js).",
+          "Konzeptionierung, Implementierung und Deployment einer internen Web-Applikation um Datenpflege und Arbeitsprozesse zu vereinfachen (basierend auf Django 2, JavaScript, MySQL 8)."
         ],
         "important": true
       }
@@ -486,8 +486,8 @@
         "id": "publications",
         "name": ["Publications", "Publikationen"],
         "description": [
-          "(co-)author of <span id=\"publications-link\"><span id=\"publications-counter\"></span> articles</span><br/>Citations: 1469, h-index: 8",
-          "(Co-)Autor von <span id=\"publications-link\"><span id=\"publications-counter\"></span> Artikeln</span><br/>Zitationen: 1469, h-Index: 8"
+          "(co-)author of <span id=\"publications-link\"><span id=\"publications-counter\"></span> articles</span><br/>Citations: 1702, h-index: 10",
+          "(Co-)Autor von <span id=\"publications-link\"><span id=\"publications-counter\"></span> Artikeln</span><br/>Zitationen: 1702, h-Index: 10"
         ],
         "important": true,
         "link_to_section": "local",
@@ -614,7 +614,9 @@
           ["various SQL dialects", "diverse SQL-Dialekte"],
           "AWS",
           "git",
-          "CI"
+          "CI",
+          "Perforce",
+          "Java"
         ],
         "important": true
       },
@@ -629,7 +631,7 @@
       },
       {
         "name": ["Web"],
-        "items": ["d3.js", "Three.js", "p5.js", "HTML", "CSS", "django"],
+        "items": ["JavaScript (incl. d3.js, Three.js, p5.js)", "HTML", "CSS", "django"],
         "important": true
       },
       {
@@ -691,6 +693,30 @@
     ],
     "publications": [
       {
+        "authors": ["L. Boucherie*", "B. F. Maier, S. Lehmann"],
+        "title": "Decomposing geographical and universal aspects of human mobility",
+        "year": "2024",
+        "journal": "arXiv",
+        "additional": "",
+        "hyperlink": "https://doi.org/10.48550/arXiv.2309.09589",
+        "arxiv": "2405.08746",
+        "doi": "10.48550/arXiv.2405.08746",
+        "important": true,
+        "score":10
+      },
+      {
+        "authors": ["P. Klamser*, A. Zachariae, B. F. Maier, O. Baranov, C. Jongen, F. Schlosser, D. Brockmann"],
+        "title": ["Inferring country-specific import risk of diseases from the world air transportation network"],
+        "year": "2024",
+        "journal": "PLOS Comp. Bio.",
+        "additional": "PLOS Computational Biology vol. 20 (1), e1011775",
+        "hyperlink": "https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1011775",
+        "arxiv": "2304.12087",
+        "doi": "10.1371/journal.pcbi.1011775",
+        "important": false,
+        "score":1
+      },
+      {
         "authors": ["B. F. Maier*"],
         "title": "Maximum-likelihood fits of piece-wise Pareto distributions with finite and non-zero core ",
         "year": "2023",
@@ -711,18 +737,6 @@
         "hyperlink": "https://doi.org/10.1093/pnasnexus/pgad192",
         "arxiv": "",
         "doi": "10.1093/pnasnexus/pgad192",
-        "important": false,
-        "score":1
-      },
-      {
-        "authors": ["P. Klamser, A. Zachariae, B. F. Maier*, O. Baranov, C. Jongen, F. Schlosser, D. Brockmann"],
-        "title": ["Inferring country-specific import risk of diseases from the world air transportation network"],
-        "year": "2023",
-        "journal": "arXiv",
-        "additional": "",
-        "hyperlink": "https://doi.org/10.48550/arXiv.2304.12087",
-        "arxiv": "2304.12087",
-        "doi": "10.48550/arXiv.2304.12087",
         "important": false,
         "score":1
       },
@@ -991,6 +1005,21 @@
       }
     ],
     "talks": [
+        {
+            "title": [
+                "Mobility and the spread of infectious diseases"
+            ],
+            "event": [
+                "Guest lecture &ldquo;Fighting Infectious Diseases&rdquo;"
+            ],
+            "place": [
+                "DTU"
+            ],
+            "year": [
+                "2023"
+            ],
+            "important": true
+        },
         {
             "title": [
                 "COVID-19: Is simpler better?"
@@ -1499,6 +1528,89 @@
             "important": true
         },
         {
+            "title": [
+                "ljhouses"
+            ],
+            "href": [
+                "github.com/benmaier/ljhouses"
+            ],
+            "description": [
+                "Simulate various two-dimensional single-atom systems to analyze similarity to urban structure (molecular dynamics and custom simulations)",
+                "Simulation verschiedener zweidimensionaler atomarer Systeme zur Analyse von urbanen Strukturen (Molekulardynamik und eigene Algorithmen)"
+            ],
+            "additional_hrefs": [],
+            "important": true
+        },
+        {
+            "title": [
+                "vaccontrib"
+            ],
+            "href": [
+                "github.com/benmaier/vaccontrib"
+            ],
+            "description": [
+                "Compute the contributions of infection pathways between vaccinated and unvaccinated individuals to infectious-disease outbreaks",
+                "Berechne die Beitr&auml;ge von Infektionswegen zwischen Geimpften und Ungeimpften in Infektionsausbr&uuml;chen"
+            ],
+            "additional_hrefs": [],
+            "important": true
+        },
+        {
+            "title": [
+                "regnet"
+            ],
+            "href": [
+                "https://doi.org/10.5281/zenodo.13642948"
+            ],
+            "description": [
+                "Construct large-scale temporal networks from registry data and analyze shortest-path lengths",
+                "Konstruiere gro&szlig;skalige zeitlich ver&auml;nderliche Netzwerke aus Registerdaten und analyse k&uuml;rzeste Wege"
+            ],
+            "additional_hrefs": [],
+            "important": true
+        },
+        {
+            "title": [
+                "fincoretails"
+            ],
+            "href": [
+                "github.com/benmaier/fincoretails"
+            ],
+            "description": [
+                "Fit a bunch of distributions with finite core and heavy tails to data",
+                "Fitting von Wahrscheinlichkeitsdistributionen mit endlichem Kern und Heavy Tail an Daten"
+            ],
+            "additional_hrefs": [],
+            "important": true
+        },
+        {
+            "title": [
+                "cQuadTree"
+            ],
+            "href": [
+                "github.com/benmaier/cQuadTree"
+            ],
+            "description": [
+                "C++/Python-package to construct and query quad trees/Barnes-Hut trees",
+                "Fitting von Wahrscheinlichkeitsdistributionen mit endlichem Kern und Heavy Tail an Daten"
+            ],
+            "additional_hrefs": [],
+            "important": true
+        },
+        {
+            "title": [
+                "submitex"
+            ],
+            "href": [
+                "github.com/benmaier/submitex"
+            ],
+            "description": [
+                "CLIs to make your LaTeX-manuscript ready for journal submission",
+                "Kommandozeilenapps um LaxTeX-Manuskripte f&uuml;r Einreichungen bei Journalen fit zu machen"
+            ],
+            "additional_hrefs": [],
+            "important": true
+        },        {
             "title": [
                 "cMHRN"
             ],
