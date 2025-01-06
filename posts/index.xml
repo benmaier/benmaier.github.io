@@ -1,51 +1,40 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Blog on Quantitative Dev &amp; Researcher</title>
+    <title>Blog on Freelance Dev &amp; IT Consultant</title>
     <link>/posts/</link>
-    <description>Recent content in Blog on Quantitative Dev &amp; Researcher</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Blog on Freelance Dev &amp; IT Consultant</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 24 Feb 2019 00:00:00 +0000</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 07 Aug 2019 00:00:00 +0000</lastBuildDate>
+    <atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>The revolution will be complete when the language is perfect</title>
       <link>/posts/language-perfect/</link>
       <pubDate>Wed, 07 Aug 2019 00:00:00 +0000</pubDate>
-      
       <guid>/posts/language-perfect/</guid>
-      <description>He moved over to the window Since about that time, war had been literally continuous, though strictly speaking it had not always been the same war. For several months during his childhood there had been confused street fighting in London itself, some of which he remembered vividly.
-Inside the flat a fruity voice was reading out a list of figures which had something to do with the production of pig iron.</description>
+      <description>&lt;h2 id=&#34;he-moved-over-to-the-window&#34;&gt;He moved over to the window&lt;/h2&gt;&#xA;&lt;p&gt;Since about that time, war had been literally continuous, though strictly speaking it had not always been the same war. For several months during his childhood there had been confused street fighting in London itself, some of which he remembered vividly.&lt;/p&gt;&#xA;&lt;p&gt;Inside the flat a fruity voice was reading out a list of figures which had something to do with the production of pig iron. The voice came from an oblong metal plaque like a dulled mirror which formed part of the surface of the right-hand wall. Winston turned a switch and the voice sank somewhat, though the words were still distinguishable. The instrument (the telescreen, it was called) could be dimmed) but there was no way of shutting it off completely.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Sanity is not statistical</title>
       <link>/posts/sanity-not-statistical/</link>
       <pubDate>Sat, 29 Dec 2018 00:00:00 +0000</pubDate>
-      
       <guid>/posts/sanity-not-statistical/</guid>
-      <description>There was no way of knowing whose version would finally be adopted Once again he glanced at his rival in the opposite cubicle. Something seemed to tell him with certainty that Tillotson was busy on the same job as himself. There was no way of knowing whose version would finally be adopted, but he felt a profound conviction that it would be his own
-Mare torrentur Mare torrentur tenuerunt Iovemque crudelis erat non manuque nullaque Pyreneus, evocet pectus, nube.</description>
+      <description>&lt;h2 id=&#34;there-was-no-way-of-knowing-whose-version-would-finally-be-adopted&#34;&gt;There was no way of knowing whose version would finally be adopted&lt;/h2&gt;&#xA;&lt;p&gt;Once again he glanced at his rival in the opposite cubicle. Something seemed to tell him with certainty that Tillotson was busy on the same job as himself. There was no way of knowing whose version would finally be adopted, but he felt a profound conviction that it would be his own&lt;/p&gt;&#xA;&lt;h2 id=&#34;mare-torrentur&#34;&gt;Mare torrentur&lt;/h2&gt;&#xA;&lt;p&gt;Mare torrentur tenuerunt Iovemque crudelis erat non manuque nullaque Pyreneus,&#xA;evocet pectus, &lt;em&gt;nube&lt;/em&gt;. In templo taedia &lt;a href=&#34;#dat&#34;&gt;socerumque moenibus&lt;/a&gt; alter sic&#xA;regina pulchra rexerat. Corbe est et, &lt;strong&gt;invectae&lt;/strong&gt; pariter ignara quod senes:&#xA;sectus his tamen. Hora graves iam prospiciunt, subito spargit germanam &lt;em&gt;utve&lt;/em&gt;,&#xA;inmeritas frontemque tempora. Frustra stratosque possim trepidare squamis, os,&#xA;tum ipse prodesse acuta Phobetora e viscera, munera!&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>It&#39;s a beautiful thing, the destruction of words</title>
       <link>/posts/destruction-of-words/</link>
       <pubDate>Tue, 30 Oct 2018 00:00:00 +0000</pubDate>
-      
       <guid>/posts/destruction-of-words/</guid>
-      <description>He moved over to the window Lorem markdownum comes; pro est modo famulus, quo quod neu manibus aether his nomine, Aurora, voce. Ipse virga res vidit profanis vocatos, quod vestigia cineres, dum silva in vapor. Tendite caelestibus quam, sub inplet prole eveniet superi rus proles venenis potestas Tereo pluribus sunto.
-Perque cessisse, hoc tum auras sinuosa. Pressant nec vinci primoque quoque funibus est: et tempore vetitorum? Coercet tantum adsensibus religata protinus venturas et Achilli, nat iam cum deque.</description>
+      <description>&lt;h1 id=&#34;he-moved-over-to-the-window&#34;&gt;He moved over to the window&lt;/h1&gt;&#xA;&lt;p&gt;Lorem markdownum comes; pro est &lt;a href=&#34;#pervenerat&#34;&gt;modo famulus&lt;/a&gt;, quo quod neu&#xA;manibus aether his nomine, Aurora, voce. Ipse virga res vidit profanis vocatos,&#xA;quod vestigia cineres, dum silva in vapor. Tendite caelestibus quam, sub inplet&#xA;prole eveniet &lt;strong&gt;superi&lt;/strong&gt; rus proles venenis potestas Tereo pluribus sunto.&lt;/p&gt;&#xA;&lt;p&gt;Perque cessisse, hoc tum auras sinuosa. Pressant nec vinci primoque quoque&#xA;funibus est: et tempore vetitorum? Coercet tantum adsensibus religata protinus&#xA;venturas et Achilli, nat iam cum deque.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Who controls the past controls the future. Who controls the present controls the past</title>
       <link>/posts/controls-the-past/</link>
       <pubDate>Thu, 07 Jun 2018 00:00:00 +0000</pubDate>
-      
       <guid>/posts/controls-the-past/</guid>
-      <description>He moved over to the window Since about that time, war had been literally continuous, though strictly speaking it had not always been the same war. For several months during his childhood there had been confused street fighting in London itself, some of which he remembered vividly.
-Inside the flat a fruity voice was reading out a list of figures which had something to do with the production of pig iron.</description>
+      <description>&lt;h2 id=&#34;he-moved-over-to-the-window&#34;&gt;He moved over to the window&lt;/h2&gt;&#xA;&lt;p&gt;Since about that time, war had been literally continuous, though strictly speaking it had not always been the same war. For several months during his childhood there had been confused street fighting in London itself, some of which he remembered vividly.&lt;/p&gt;&#xA;&lt;p&gt;Inside the flat a fruity voice was reading out a list of figures which had something to do with the production of pig iron. The voice came from an oblong metal plaque like a dulled mirror which formed part of the surface of the right-hand wall. Winston turned a switch and the voice sank somewhat, though the words were still distinguishable. The instrument (the telescreen, it was called) could be dimmed) but there was no way of shutting it off completely.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>
